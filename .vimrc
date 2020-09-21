@@ -112,3 +112,8 @@ endfunction
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+
+" ALE
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
