@@ -21,6 +21,13 @@ Plug 'dense-analysis/ale'
 "Programming language related
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'pangloss/vim-javascript'
+
+"Linters
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less',
+  \ 'scss', 'json', 'graphql', 'markdown', 'vue',
+  \ 'yaml', 'html'] }
 call plug#end()
 
 syntax on
@@ -70,7 +77,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 "NerdTree tweaks
 let g:NERDTreeGitStatusUseNerdFonts = 1
-map <C-t> :NERDTreeToggle<CR>
+map <F5> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
@@ -99,3 +106,5 @@ let g:ale_sign_warning = '⚠'
 
 "Rainbow
 let g:rainbow_active = 1
+
+"Prettier
