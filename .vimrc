@@ -17,7 +17,7 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'dense-analysis/ale'
-
+Plug 'jiangmiao/auto-pairs'
 "Programming language related
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'pangloss/vim-javascript'
@@ -30,7 +30,7 @@ Plug 'prettier/vim-prettier', {
   \ 'yaml', 'html'] }
 call plug#end()
 
-syntax on
+syntax enable
 colorscheme PaperColor
 set background=dark
 set number
@@ -68,6 +68,11 @@ set ignorecase
 set smartcase
 set autoread " automatically reload files upon change outside VIM
 
+"Panes tweaks
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 "Spaceline tweaks
 let g:spaceline_seperate_style = 'curve'
