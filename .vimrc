@@ -3,13 +3,12 @@ call plug#begin('~/.vim/plugged')
 " Color schemes
 Plug 'joshdick/onedark.vim'
 Plug 'NLKNguyen/papercolor-theme'
-
 "Visual stuff
 Plug 'ryanoasis/vim-devicons'
 Plug 'glepnir/spaceline.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'luochen1990/rainbow'
-
+Plug 'ap/vim-css-color'
 "Productivity
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} ":CocInstall coc-json coc-html coc-tsserver
@@ -30,7 +29,14 @@ Plug 'prettier/vim-prettier', {
   \ 'yaml', 'html'] }
 call plug#end()
 
+"""" enable 24bit true color
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
 syntax enable
+
+autocmd FileType scss setl iskeyword+=@-@
 colorscheme PaperColor
 set background=dark
 set number
