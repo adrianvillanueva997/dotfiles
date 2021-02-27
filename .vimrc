@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 " Color schemes
 Plug 'joshdick/onedark.vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'sickill/vim-monokai'
 "Visual stuff
 Plug 'ryanoasis/vim-devicons'
 Plug 'glepnir/spaceline.vim'
@@ -11,12 +12,14 @@ Plug 'luochen1990/rainbow'
 Plug 'ap/vim-css-color'
 "Productivity
 Plug 'tpope/vim-fugitive'
-Plug 'neoclide/coc.nvim', {'branch': 'release'} ":CocInstall coc-json coc-html coc-tsserver
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "Coc install stuff is in line 105
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
+Plug 'sheerun/vim-polyglot'
+
 "Programming language related
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'pangloss/vim-javascript'
@@ -27,16 +30,22 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less',
   \ 'scss', 'json', 'graphql', 'markdown', 'vue',
   \ 'yaml', 'html'] }
+
 call plug#end()
-
-"""" enable 24bit true color
-" If you have vim >=8.0 or Neovim >= 0.1.5
-if (has("termguicolors"))
- set termguicolors
+if (empty($TMUX))
+  if (has("nvim"))    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
 endif
-syntax enable
-
-autocmd FileType scss setl iskeyword+=@-@
+set conceallevel=1
+syntax on
+set nocompatible
 colorscheme PaperColor
 set background=dark
 set number
@@ -94,7 +103,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 "Coc stuff
 let g:coc_global_extensions = [
-  \ 'coc-json', 'coc-go', 'coc-tsserver']
+  \ 'coc-json', 'coc-go', 'coc-tsserver', 'coc-pyright']
 nn <silent> I :call CocActionAsync('doHover')<cr>
 nmap <silent> <Leader>cm :call CocActionAsync<cr>
 nmap <silent> <leader>cf <Plug>(coc-fix-current)
@@ -118,4 +127,19 @@ let g:ale_sign_warning = '⚠'
 "Rainbow
 let g:rainbow_active = 1
 
-"Prettier
+"Vim-go syntax highlight
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
+
+" onedark
+"let g:onedark_terminal_italics = 1
+
+"Python syntax highlight
+let g:python_highlight_all = 1
+
+"PaperColor
+let g:allow_italic = 1
+let g:allow_bold = 1
