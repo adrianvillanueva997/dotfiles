@@ -1,4 +1,4 @@
-"== Plugins ==
+"== plugins ==
 call plug#begin('~/.vim/plugged')
 " Color schemes
 Plug 'joshdick/onedark.vim'
@@ -43,6 +43,7 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
 set conceallevel=1
 syntax on
 set nocompatible
@@ -82,6 +83,8 @@ set incsearch
 set ignorecase
 set smartcase
 set autoread " automatically reload files upon change outside VIM
+set splitbelow
+set splitright
 
 "Panes tweaks
 map <C-j> <C-W>j
@@ -104,17 +107,13 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 "Coc stuff
 let g:coc_global_extensions = [
   \ 'coc-json', 'coc-go', 'coc-tsserver', 'coc-pyright']
-nn <silent> I :call CocActionAsync('doHover')<cr>
-nmap <silent> <Leader>cm :call CocActionAsync<cr>
-nmap <silent> <leader>cf <Plug>(coc-fix-current)
-nmap <silent> <Leader>cd <Plug>(coc-definition)
-nmap <silent> <Leader>cy <Plug>(coc-type-definition)
-nmap <silent> <Leader>ci <Plug>(coc-implementation)
-nmap <silent> <Leader>cr <Plug>(coc-references)
-nmap <silent> <Leader>cn <Plug>(coc-diagnostic-next)
-nmap <silent> <Leader>cp <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>cm <Plug>(coc-rename)
-nmap <silent> <Leader>gp :GFiles<CR>
+nn <silent> q :call CocActionAsync('doHover')<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gf <Plug>(coc-fix)
+
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Highlight the symbol and its references when holding the cursor.
