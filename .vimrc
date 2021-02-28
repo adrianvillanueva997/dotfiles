@@ -3,7 +3,6 @@ call plug#begin('~/.vim/plugged')
 " Color schemes
 Plug 'joshdick/onedark.vim'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'sickill/vim-monokai'
 "Visual stuff
 Plug 'ryanoasis/vim-devicons'
 Plug 'glepnir/spaceline.vim'
@@ -16,10 +15,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} "Coc install stuff is in line 10
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'unkiwii/vim-nerdtree-sync'
-Plug 'dense-analysis/ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sheerun/vim-polyglot'
-
+Plug 'dense-analysis/ale'
+"Git stuff
+Plug 'airblade/vim-gitgutter'
 "Programming language related
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'pangloss/vim-javascript'
@@ -93,10 +93,19 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 "Spaceline tweaks
-let g:spaceline_seperate_style = 'curve'
+let g:spaceline_seperate_style = 'none'
 let g:spaceline_colorscheme = 'space'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:spaceline_diagnositc_tool = 'ale'
+let g:spaceline_diff_tool = 'git-gutter'
+let g:spaceline_git_branch_icon = ' '
+let g:spaceline_diagnostic_errorsign = 'ﲅ'
+let g:spaceline_diagnostic_warnsign = ' '
+let g:spaceline_custom_diff_icon = ['+','=','-']
+" ALE
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = ''
 
 "NerdTree tweaks
 let g:NERDTreeGitStatusUseNerdFonts = 1
@@ -118,10 +127,6 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" ALE
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠'
 
 "Rainbow
 let g:rainbow_active = 1
