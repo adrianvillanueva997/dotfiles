@@ -16,6 +16,11 @@ antigen bundle tmux
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zpm-zsh/clipboard
+antigen bundle zpm-zsh/material-colors
 
-#Tell antigen that we are done
+#themes
+# antigen theme denysdovhan/spaceship-prompt
+antigen theme romkatv/powerlevel10k
+
 antigen apply
