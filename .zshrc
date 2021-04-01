@@ -8,8 +8,14 @@ antigen init "$HOME/.antigenrc"
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+# Neovim aliases
 alias vim="nvim"
 alias vi="nvim"
+
+# Go path stuff
+export GOPATH=~/go
+export PATH=$PATH:$GOPATH/bin
+
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
