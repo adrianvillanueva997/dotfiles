@@ -25,3 +25,7 @@ https://github.com/tmux-plugins/tpm
 
 # Alacritty
 It's almost the default config, just with a one dark pro theme
+
+# Gow
+go install github.com/mitranim/gow@latest
+
