@@ -115,7 +115,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 "Coc stuff
 let g:coc_global_extensions = [
-  \ 'coc-json', 'coc-go', 'coc-tsserver', 'coc-pyright']
+  \ 'coc-json', 'coc-go', 'coc-tsserver', 'coc-pyright', 'coc-rust-analyzer']
 nn <silent> q :call CocActionAsync('doHover')<cr>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
