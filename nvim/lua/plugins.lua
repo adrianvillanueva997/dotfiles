@@ -15,7 +15,9 @@ return require('packer').startup(function()
     require('gitsigns').setup()
   	end
 	}
-	use {'hoob3rt/lualine.nvim'};
+	-- use {'hoob3rt/lualine.nvim'};
+	use {'scrooloose/nerdcommenter'};
+  	use {'glepnir/galaxyline.nvim'};
 	use {'preservim/nerdtree'};
 	use {'Xuyuanp/nerdtree-git-plugin'};
 	use {'p00f/nvim-ts-rainbow'}

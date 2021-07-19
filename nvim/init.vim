@@ -1,8 +1,4 @@
-lua require('plugins')
-lua require('line')
-lua require('autopair')
-lua require('brackets')
-lua require('autotag')
+lua require('wrapper')
 
 set termguicolors
 set conceallevel=1
@@ -64,7 +60,10 @@ nnoremap <C-V> :vs<CR>
 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {"go", "gomod" ,"css" , "javascript","graphql", "html", "javascript","python", "rust", "scss", "vue", "yaml", "typescript", "dockerfile", "json", "lua"},
+  ensure_installed = {
+			  \ "go", "gomod" ,"css" , "javascript","graphql",
+			  \ "html", "javascript","python", "rust", "scss", "vue", "yaml",
+			  \ "typescript", "dockerfile", "json", "lua"},
   highlight = {
     enable = true,              -- false will disable the whole extension
     additional_vim_regex_highlighting = false,
@@ -73,22 +72,27 @@ require'nvim-treesitter.configs'.setup {
 EOF
 "Coc stuff
 let g:coc_global_extensions = [
-  \ 'coc-json', 'coc-go', 'coc-tsserver', 'coc-pyright', 'coc-rust-analyzer']
+  \ 'coc-json', 'coc-go', 'coc-tsserver', 'coc-pyright', 
+  \ 'coc-rust-analyzer', 'coc-json', 'coc-html', 'coc-css',
+  \ 'coc-markdownlint','coc-lua', 'coc-docker', 'coc-snippets', 
+  \ 'coc-yaml', 'coc-vetur', 'coc-prisma', 'coc-pydocstring', ]
 nn <silent> q :call CocActionAsync('doHover')<cr>
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent>ff  <Plug>(coc-codeaction)
+
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 inoremap <silent><expr> <c-space> coc#refresh()
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gf <Plug>(coc-fix)
-
 " ALE Stuff (Only used for linting)
 let b:ale_fixers = {
 			\ 'javascript': ['prettier', 'eslint'], 
 			\ 'go':['gofmt', 'goimports'], 
 			\ 'vue':['prettier'], 
 			\ 'python':['autoflake','autoimport','autopep8','black','isort','yapf'],
-			\ 'lua':['luafmt', 'lua-format', 'stylua']}
+			\ 'lua':['luafmt', 'lua-format', 'stylua'],
+			\ 'typescript': ['eslint', 'prettier','tslint']}
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 
