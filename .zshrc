@@ -21,5 +21,4 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-eval "$(fnm env)"
 eval "$(starship init zsh)"
