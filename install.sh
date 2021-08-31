@@ -6,7 +6,7 @@ wget https://raw.githubusercontent.com/adrianvillanueva997/Dotfiles/master/.zshr
 wget https://raw.githubusercontent.com/adrianvillanueva997/Dotfiles/master/.vimrc
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-curl -L git.io/antigen > antigen.zsh
+curl -L git.io/antigen > .antigen.zsh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 git clone https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
