@@ -11,6 +11,8 @@ antigen bundle pip
 antigen bundle golang
 antigen bundle node
 antigen bundle tmux
+antigen bundle aws
+antigen bundle terraform
 
 # Load bundles from external repos
 antigen bundle zsh-users/zsh-completions
@@ -18,6 +20,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zpm-zsh/clipboard
 antigen bundle zpm-zsh/material-colors
+antigen bundle darvid/zsh-poetry
 
 #themes
 # antigen theme denysdovhan/spaceship-prompt
