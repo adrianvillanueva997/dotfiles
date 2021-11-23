@@ -1,16 +1,19 @@
 # My dotfiles
 
+## Fonts
+
+Install all of them :
+
+https://github.com/ryanoasis/nerd-fonts
+
+
 ## Vim stuff
 
 You need Packer and Neovim >=5.0:
 
-Node for CoC, or just install nvm which is already configured in my .zshrc file
-
-`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash`
-
 ## Zsh
 
-I use oh my zsh and powerline 10k, you need nerdfonts:
+I use oh my zsh and starship, you need nerdfonts:
 
 <https://github.com/ryanoasis/nerd-fonts>
 
@@ -26,7 +29,6 @@ Install tmux plugin manager, the theme is the one provided by oh my tmux
 
 It's almost the default config, just with a one dark pro theme
 
-## Gow
+## Kitty
 
-go install github.com/mitranim/gow@latest
-
+just download it and use the config i have
