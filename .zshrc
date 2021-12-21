@@ -55,4 +55,4 @@ eval "$(starship init zsh)"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 export SSH_PRV_KEY="$(cat ~/.ssh/id_ed25519)"
-
+LS_COLORS=$LS_COLORS:'ow=1;34:' ; export LS_COLORS
