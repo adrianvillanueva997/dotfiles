@@ -36,7 +36,7 @@ alias dcr="docker-compose restart"
 alias dcl="docker-compose logs"
 alias dex="docker exec -it"
 
-alias dps="docker ps"
+alias dps="docker ps -a"
 alias dsa="docker ps -q | awk '{print $1}' | xargs -o docker stop"
 alias dcp="docker ps -q | awk '{print $1}' | xargs -o docker container prune"
 alias dip="docker ps -q | awk '{print $1}' | xargs -o docker image prune -a"
