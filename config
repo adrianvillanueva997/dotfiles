@@ -1,0 +1,8 @@
+Host github-dashmote
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/dashmote
+Host github-personal
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/personal
