@@ -1,3 +1,8 @@
+[color]
+	ui = auto
+	diff = auto
+	status = auto
+
 [includeIf "gitdir:~/personal/"]
   path = ~/.gitconfig-personal
 [includeIf "gitdir:~/work/"]
