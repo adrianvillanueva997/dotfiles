@@ -18,6 +18,7 @@ ohmyzsh/ohmyzsh path:plugins/kubectl
 
 # Load bundles from external repos
 Aloxaf/fzf-tab
+unixorn/fzf-zsh-plugin
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting
