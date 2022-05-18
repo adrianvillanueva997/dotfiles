@@ -17,6 +17,7 @@ ohmyzsh/ohmyzsh path:plugins/terraform
 ohmyzsh/ohmyzsh path:plugins/kubectl
 
 # Load bundles from external repos
+Aloxaf/fzf-tab
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 zdharma-continuum/fast-syntax-highlighting
