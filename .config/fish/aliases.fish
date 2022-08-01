@@ -2,8 +2,7 @@
 alias vim="nvim"
 alias vi="nvim"
 # alias python="python3"
-alias kubectl="kubecolor"
-# alias cat="ccat"
+#alias cat="bat"
 # Cargo aliases
 alias co=cargo
 alias cr='cargo run'

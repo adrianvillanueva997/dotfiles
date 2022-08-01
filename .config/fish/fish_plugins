@@ -8,4 +8,6 @@ acomagu/fish-async-prompt
 jorgebucaran/nvm.fish
 gazorby/fish-abbreviation-tips
 h-matsuo/fish-color-scheme-switcher
+lilyball/nix-env.fish
+halostatue/fish-rust
 edc/bass
