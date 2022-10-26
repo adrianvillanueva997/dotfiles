@@ -133,6 +133,35 @@ local lsp_flags = {
 	debounce_text_changes = 150,
 }
 -- Completion Plugin Setup
+
+local kind_icons = {
+	Text = "",
+	Method = "",
+	Function = "",
+	Constructor = "",
+	Field = "",
+	Variable = "",
+	Class = "ﴯ",
+	Interface = "",
+	Module = "",
+	Property = "ﰠ",
+	Unit = "",
+	Value = "",
+	Enum = "",
+	Keyword = "",
+	Snippet = "",
+	Color = "",
+	File = "",
+	Reference = "",
+	Folder = "",
+	EnumMember = "",
+	Constant = "",
+	Struct = "",
+	Event = "",
+	Operator = "",
+	TypeParameter = "",
+}
+
 local cmp = require("cmp")
 cmp.setup({
 	snippet = {
@@ -157,7 +186,7 @@ cmp.setup({
 		}),
 	}),
 	sources = cmp.config.sources({
-		{ name = "nvim_lsp" },
+		{ name = "nvim_lsp", max_item_count = 6 },
 		{ name = "vsnip" }, -- For vsnip users.
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp_signature_help" },
@@ -165,6 +194,26 @@ cmp.setup({
 		{ name = "calc" },
 		{ name = "buffer" },
 	}),
+	formatting = {
+		format = function(entry, vim_item)
+			local prsnt, lspkind = pcall(require, "lspkind")
+			if not prsnt then
+				-- Kind icons
+				vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+				-- Source
+				vim_item.menu = ({
+					buffer = "[Buffer]",
+					nvim_lsp = "[LSP]",
+					luasnip = "[LuaSnip]",
+					nvim_lua = "[Lua]",
+					latex_symbols = "[LaTeX]",
+				})[entry.source.name]
+				return vim_item
+			else
+				return lspkind.cmp_format()
+			end
+		end,
+	},
 })
 
 -- Set configuration for specific filetype.
@@ -180,11 +229,9 @@ cmp.setup.filetype("gitcommit", {
 cmp.setup.cmdline("/", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
-
 		{ name = "buffer" },
 	},
 })
-
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
@@ -196,7 +243,7 @@ cmp.setup.cmdline(":", {
 })
 
 -- Setup lspconfig.
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 require("lspconfig").pyright.setup({
 	on_attach = on_attach,
 	flags = lsp_flags,
@@ -277,8 +324,6 @@ null_ls.setup({
 	sources = {
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.formatting.black,
-		null_ls.builtins.diagnostics.flake8,
-		null_ls.builtins.formatting.rustfmt,
 		null_ls.builtins.code_actions.refactoring,
 		null_ls.builtins.diagnostics.fish,
 		null_ls.builtins.diagnostics.golangci_lint,
@@ -286,7 +331,6 @@ null_ls.setup({
 		null_ls.builtins.formatting.markdownlint,
 		null_ls.builtins.formatting.prettier,
 		null_ls.builtins.diagnostics.pylama,
-		null_ls.builtins.diagnostics.pydocstyle,
 		null_ls.builtins.formatting.isort,
 	},
 	debug = false,
