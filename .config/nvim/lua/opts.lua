@@ -35,7 +35,7 @@ opt.splitbelow = true -- bool: Place new window below the current one
 -- [[ Theme ]]
 opt.syntax = "ON" -- str:  Allow syntax highlighting
 opt.termguicolors = true -- bool: If term supports ui color then enable
-vim.cmd([[colorscheme onedarkpro]])
+vim.cmd([[colorscheme kanagawa]])
 
 --Set completeopt to have a better completion experience
 -- :help completeopt
@@ -58,8 +58,8 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
 
 require("onedarkpro").setup({
-    dark_theme = "onedark_vivid", -- The default dark theme
-    light_theme = "onelight", -- The default light theme
+    -- dark_theme = "onedark_vivid", -- The default dark theme
+    -- light_theme = "onelight", -- The default light theme
     plugins = { -- Override which plugin highlight groups are loaded
         -- See the [Supported Plugins](#electric_plug-supported-plugins) section for a list of supported plugins
     },
