@@ -19,6 +19,7 @@ return {
           "rust",
           "regex",
           "tsx",
+          "hcl",
           "typescript",
           "vim",
           "yaml",

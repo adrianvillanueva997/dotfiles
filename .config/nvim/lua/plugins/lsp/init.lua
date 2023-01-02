@@ -48,7 +48,8 @@ return {
           nls.builtins.diagnostics.ruff,
           nls.builtins.formatting.black,
           nls.builtins.completion.luasnip,
-          nls.builtins.formatting.rustfmt
+          nls.builtins.formatting.rustfmt,
+          nls.builtins.formatting.terrafmt,
         },
       })
     end,
