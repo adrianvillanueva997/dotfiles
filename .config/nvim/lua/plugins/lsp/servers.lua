@@ -7,6 +7,7 @@ local servers = {
   tsserver = {},
   html = {},
   jsonls = {},
+  gopls = {},
   pyright = {},
   rust_analyzer = {},
   yamlls = {},

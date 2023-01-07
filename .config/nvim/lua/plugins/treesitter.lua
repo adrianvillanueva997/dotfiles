@@ -14,6 +14,7 @@ return {
           "json",
           "lua",
           "markdown",
+          "go",
           "markdown_inline",
           "python",
           "rust",
