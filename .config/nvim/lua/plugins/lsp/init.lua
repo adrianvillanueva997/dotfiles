@@ -111,8 +111,8 @@ return {
       local nls = require("null-ls")
       return {
         sources = {
-          -- nls.builtins.formatting.prettierd,
-         nls.builtins.formatting.stylua,
+          nls.builtins.formatting.prettierd,
+          nls.builtins.formatting.stylua,
           nls.builtins.diagnostics.golangci_lint,
           nls.builtins.diagnostics.hadolint,
           nls.builtins.formatting.markdownlint,
