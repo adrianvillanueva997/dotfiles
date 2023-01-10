@@ -37,7 +37,6 @@ zinit snippet OMZP::nvm
 zinit snippet OMZP::pip
 zinit snippet OMZP::golang 
 zinit snippet OMZP::node
-zinit snippet OMZP::tmux
 zinit snippet OMZP::kubectl 
 zinit snippet OMZP::aws
 zinit snippet OMZP::gcloud
