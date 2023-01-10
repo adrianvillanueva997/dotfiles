@@ -5,7 +5,7 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
 
 # Thumbnails
 ._*
@@ -26,3 +26,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Neovim stuff
+
+.config/nvim/lazy-lock.json
