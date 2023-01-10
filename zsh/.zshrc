@@ -51,6 +51,7 @@ zinit snippet OMZP::virtualenv
 zinit snippet OMZP::git-auto-fetch
 zinit snippet OMZP::flutter
 zinit snippet OMZP::web-search
+zinit snippet OMZP::vscode
 
 # # External plugins
 zinit load "mafredri/zsh-async"
