@@ -66,13 +66,11 @@ zinit load "mbenford/zsh-tmux-auto-title"
 zinit load "RobertAudi/tsm"
 zinit load "MenkeTechnologies/zsh-cargo-completion"
 zinit load "lukechilds/zsh-better-npm-completion"
-# zplug "redxtech/zsh-kitty"
 zinit load "spwhitt/nix-zsh-completions"
 zinit load "wfxr/forgit"
 zinit load "mroth/evalcache"
 zinit load "spwhitt/nix-zsh-completions"
 zinit load "zpm-zsh/ls"
-# zinit load "cowboyd/zsh-rust"
 
 
 export TERM=xterm-256color
