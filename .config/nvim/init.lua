@@ -1,2 +1,10 @@
-require("config.lazy")
+require('packer_bootstrap')
+require('plugins')
+require('ui')
+require('ts')
+require('cfg')
+require('lsp')
+require('completion')
+require('linting')
+require('tp')
 
