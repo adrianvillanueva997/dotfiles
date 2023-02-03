@@ -1,7 +1,7 @@
 vim.opt.termguicolors = true
 vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]]
-vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 vim.cmd("colorscheme kanagawa")
 vim.opt.list = true
@@ -17,26 +17,26 @@ vim.wo.number = true
 
 -- Lua
 vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", {
-    silent = true,
-    noremap = true
+	silent = true,
+	noremap = true
 })
 vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", {
-    silent = true,
-    noremap = true
+	silent = true,
+	noremap = true
 })
 vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", {
-    silent = true,
-    noremap = true
+	silent = true,
+	noremap = true
 })
 vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", {
-    silent = true,
-    noremap = true
+	silent = true,
+	noremap = true
 })
 vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", {
-    silent = true,
-    noremap = true
+	silent = true,
+	noremap = true
 })
 vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", {
-    silent = true,
-    noremap = true
+	silent = true,
+	noremap = true
 })
