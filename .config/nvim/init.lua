@@ -1,10 +1,2 @@
-require("packer_bootstrap")
-require("plugins")
-require("ui")
-require("ts")
-require("cfg")
-require("lsp")
-require("completion")
---require("linting")
-require("tp")
-require("nav")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
