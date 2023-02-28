@@ -17,7 +17,7 @@ scrolling:
   multiplier: 3
 
 font:
-  size: 7
+  size: 12
   # Normal (roman) font face
   normal:
     # Font family
