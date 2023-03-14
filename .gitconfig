@@ -14,7 +14,7 @@
 [diff]
     colorMoved = default
 
-[includeIf "gitdir:~/personal/"]
+[includeIf "gitdir:~/proyectos/"]
   path = ~/.gitconfig-personal
 
 [push]
