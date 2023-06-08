@@ -5,4 +5,4 @@ updates:
     allow:
       - dependency-name: ".config/nvim"
     schedule:
-      interval: "daily"
+      interval: "monthly"
