@@ -22,9 +22,9 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
-
-zinit load "Aloxaf/fzf-tab"
-zinit load "lukechilds/zsh-nvm"
+zinit light romkatv/zsh-defer
+zinit light "Aloxaf/fzf-tab"
+zinit light "lukechilds/zsh-nvm"
 # oh-my-zsh plugins
 zinit load "ohmyzsh/ohmyzsh"
 zinit snippet OMZP::git
@@ -53,23 +53,21 @@ zinit snippet OMZP::web-search
 zinit snippet OMZP::vscode
 
 # # External plugins
-zinit load "mafredri/zsh-async"
-zinit load "unixorn/fzf-zsh-plugin"
-zinit load "zsh-users/zsh-autosuggestions"
-zinit load "zdharma-continuum/fast-syntax-highlighting"
-zinit load "zpm-zsh/clipboard"
-zinit load "zpm-zsh/material-colors"
-zinit load "MichaelAquilina/zsh-autoswitch-virtualenv"
-zinit load "MichaelAquilina/zsh-you-should-use"
+zsh-defer zinit light "mafredri/zsh-async"
+zsh-defer zinit light "unixorn/fzf-zsh-plugin"
+zsh-defer zinit light "zsh-users/zsh-autosuggestions"
+zsh-defer zinit light "zdharma-continuum/fast-syntax-highlighting"
+zsh-defer zinit light "zpm-zsh/clipboard"
+zsh-defer zinit light "zpm-zsh/material-colors"
+zsh-defer zinit light "MichaelAquilina/zsh-autoswitch-virtualenv"
+zsh-defer zinit light "MichaelAquilina/zsh-you-should-use"
 zinit load "paulmelnikow/zsh-startup-timer"
-zinit load "RobertAudi/tsm"
-zinit load "MenkeTechnologies/zsh-cargo-completion"
-zinit load "lukechilds/zsh-better-npm-completion"
-zinit load "spwhitt/nix-zsh-completions"
-zinit load "wfxr/forgit"
+zsh-defer zinit light "RobertAudi/tsm"
+zsh-defer zinit light "MenkeTechnologies/zsh-cargo-completion"
+zsh-defer zinit light "lukechilds/zsh-better-npm-completion"
+zsh-defer zinit light "spwhitt/nix-zsh-completions"
+zsh-defer zinit light "wfxr/forgit"
 zinit load "mroth/evalcache"
-zinit load "spwhitt/nix-zsh-completions"
-zinit load "zpm-zsh/ls"
 
 
 export TERM=xterm-256color
@@ -131,11 +129,7 @@ if [ -f '$HOME/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/avm/Do
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/avm/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Nix
- if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
- fi
- # End Nix
 source <(kubectl completion zsh)
 enable-fzf-tab
 
+export PATH="/opt/homebrew/opt/libiconv/bin:$PATH"
