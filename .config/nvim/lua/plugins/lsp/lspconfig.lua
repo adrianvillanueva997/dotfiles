@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
+		{ "lvimuser/lsp-inlayhints.nvim" },
 	},
 	config = function()
 		-- import lspconfig plugin
@@ -17,6 +18,7 @@ return {
 		local opts = { noremap = true, silent = true }
 		local on_attach = function(client, bufnr)
 			opts.buffer = bufnr
+			require("lsp-inlayhints").on_attach(client, bufnr)
 
 			-- set keybinds
 			opts.desc = "Show LSP references"
@@ -90,6 +92,12 @@ return {
 
 		-- configure tailwindcss server
 		lspconfig["tailwindcss"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+		})
+
+		-- configure rust
+		lspconfig["rust_analyzer"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 		})
