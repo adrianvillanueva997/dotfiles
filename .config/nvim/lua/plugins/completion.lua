@@ -15,6 +15,7 @@ return {
 			"petertriho/cmp-git", -- git source stuff
 			"hrsh7th/cmp-emoji", -- emojis
 			"saecki/crates.nvim", --crates
+			"hrsh7th/cmp-nvim-lsp-signature-help", -- signature help
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -51,6 +52,7 @@ return {
 					{ name = "git" }, -- git stuff
 					{ name = "emoji" }, -- emojis
 					{ name = "crates" }, --crates
+					{ name = "nvim_lsp_signature_help" },
 				}),
 				-- configure lspkind for vs-code like pictograms in completion menu
 				formatting = {
