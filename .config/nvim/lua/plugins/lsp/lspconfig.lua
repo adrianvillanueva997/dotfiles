@@ -5,6 +5,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{ "lvimuser/lsp-inlayhints.nvim" },
+		{ "folke/trouble.nvim" },
 	},
 	config = function()
 		-- import lspconfig plugin
@@ -100,6 +101,11 @@ return {
 		lspconfig["rust_analyzer"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
+			settings = {
+				diagnostics = {
+					enable = true,
+				},
+			},
 		})
 
 		-- configure svelte server
