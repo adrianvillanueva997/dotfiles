@@ -7,7 +7,7 @@ end
 config.font = wezterm.font("FiraCode Nerd Font")
 config.enable_scroll_bar = true
 config.disable_default_key_bindings = false
-config.color_scheme = "Catppuccin Mocha (Gogh)"
+config.color_scheme = "MaterialDarker"
 
 config.inactive_pane_hsb = {
     hue = 1.0,
