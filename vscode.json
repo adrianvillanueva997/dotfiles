@@ -4,7 +4,6 @@
   "terminal.integrated.fontFamily": "'FiraCode Nerd Font', 'Fira Code', Consolas, 'Courier New', monospace",
   "editor.autoClosingBrackets": "languageDefined",
   "editor.copyWithSyntaxHighlighting": true,
-  // vim stuff
   "vim.useCtrlKeys": true,
   "vim.handleKeys": {
     "<C-c>": false,
@@ -17,6 +16,20 @@
     "<C-k>": false,
     "C-K": false
   },
+  // TODO: Do something cool with this
+  "background.customImages": [
+    "https://i.imgur.com/7kcrAQa.png",
+    "https://i.imgur.com/N9t14D3.png",
+    "https://i.imgur.com/O9n4fYk.png",
+    "https://i.imgur.com/5VN5DrY.png",
+    "https://i.imgur.com/oOagi23.png",
+    "https://i.imgur.com/265wNih.png"
+  ],
+  "background.style": {
+    "background-size": "300px 460px",
+    "opacity": 0.2
+  },
+  "background.interval": 60,
   "editor.cursorBlinking": "expand",
   "editor.semanticHighlighting.enabled": true,
   "editor.minimap.renderCharacters": true,
@@ -34,8 +47,10 @@
   "terminal.integrated.fontSize": 14,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "editor.fontSize": 14,
-  "workbench.tree.indent": 20,
+  // Workbench tree
+  "workbench.tree.indent": 15,
+  "workbench.tree.renderIndentGuides": "always",
+  "rust-analyzer.highlighting.strings": false,
   // Bracket pair colorizer
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": false,
@@ -45,12 +60,16 @@
   "editor.guides.highlightActiveBracketPair": true,
   "editor.guides.bracketPairsHorizontal": false,
   "workbench.colorCustomizations": {
+    "tree.indentGuidesStroke": "#f4f3f5",
     "editorBracketHighlight.foreground1": "#5bb3b3",
     "editorBracketHighlight.foreground2": "#fac863",
     "editorBracketHighlight.foreground3": "#f99157",
     "editorBracketHighlight.foreground4": "#ec5f67",
     "editorBracketHighlight.foreground5": "#bb80b3",
     "editorBracketHighlight.foreground6": "#98C379"
+  },
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true
   },
   "editor.tokenColorCustomizations": {
     "[Kanagawa]": {
@@ -99,7 +118,7 @@
       }
     ]
   },
-  "workbench.iconTheme": "bearded-icons",
+  "workbench.iconTheme": "catppuccin-macchiato",
   "explorer.confirmDelete": false,
   "[markdown]": {
     "editor.unicodeHighlight.ambiguousCharacters": false,
@@ -115,6 +134,9 @@
   },
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -151,7 +173,6 @@
     "editor.formatOnSave": true,
     "editor.tabSize": 2
   },
-  "eslint.alwaysShowStatus": false,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
   "prettier.bracketSpacing": true,
@@ -187,7 +208,13 @@
   "workbench.startupEditor": "none",
   // Python stuff
   "python.terminal.activateEnvironment": true,
-  "indentRainbow.includedLanguages": ["python", "yaml", "toml", "Dockefile"],
+  "indentRainbow.includedLanguages": [
+    "python",
+    "yaml",
+    "toml",
+    "Dockefile",
+    "yml"
+  ],
   "indentRainbow.indicatorStyle": "light",
   "indentRainbow.colors": [
     "rgba(255, 0 , 0,0.5)",
@@ -198,47 +225,85 @@
     "rgba(100, 0, 252,0.5)",
     "rgba(250,0,211,0.5)"
   ],
+  "better-comments.multilineComments": true, // multiline comments will highlight all lines
+  "better-comments.tags": [
+    {
+      "tag": "!", // ! example
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?", // ? example
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//", // // example
+      "color": "#474747",
+      "strikethrough": true,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "todo", // todo example
+      "color": "#FF8C00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*", // * example
+      "color": "#98C379",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+  ],
   "python.analysis.inlayHints.functionReturnTypes": true,
   "python.analysis.inlayHints.variableTypes": true,
   "python.analysis.autoSearchPaths": true,
   "python.analysis.useLibraryCodeForTypes": true,
-  "python.linting.banditEnabled": true,
-  "python.linting.pylintEnabled": false,
   "python.analysis.autoImportCompletions": true,
-  "python.linting.mypyEnabled": false,
-  "python.linting.pylamaEnabled": true,
-  "python.linting.flake8Enabled": false,
-  "python.linting.enabled": true,
-  "python.linting.lintOnSave": true,
   "python.interpreter.infoVisibility": "onPythonRelated",
-  "isort.args": ["--profile", "black"],
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true,
-      "source.fixAll": true
+      "source.fixAll": true,
+      "ruff.organizeImports": true
     }
-  },
-  "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   },
   "cSpell.enableFiletypes": ["md"],
   "cSpell.enabledLanguageIds": ["markdown"],
   "yaml.schemas": {},
   "[sql]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "mtxr.sqltools"
   },
   "javascript.autoClosingTags": true,
   "typescript.autoClosingTags": true,
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
   "json.schemas": [],
   "editor.inlineSuggest.enabled": true,
   "git.ignoreMissingGitWarning": true,
   "jupyter.askForKernelRestart": false,
   "editor.linkedEditing": true,
-  "workbench.colorTheme": "Kanagawa",
   "workbench.preferredDarkColorTheme": "Kanagawa",
   "workbench.preferredLightColorTheme": "Horizon Extended Light",
   "[dart]": {
@@ -253,13 +318,13 @@
   },
   "security.workspace.trust.untrustedFiles": "open",
   "rust-analyzer.cargo.autoreload": true,
-  "rust-analyzer.checkOnSave.allTargets": true,
-  "rust-analyzer.checkOnSave.enable": true,
   "rust-analyzer.completion.autoimport.enable": true,
   "rust-analyzer.diagnostics.enable": true,
-  "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "always",
-  "rust-analyzer.inlayHints.reborrowHints.enable": "mutable",
-  "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.checkOnSave": true,
+  "rust-analyzer.inlayHints.lifetimeElisionHints.enable": "skip_trivial",
+  "rust-analyzer.inlayHints.reborrowHints.enable": "never",
+  "rust-analyzer.inlayHints.typeHints.enable": true,
+  "rust-analyzer.check.command": "clippy",
   "sonarlint.rules": {
     "python:S5886": {
       "level": "off"
@@ -297,10 +362,34 @@
     "!Split",
     "!Split sequence"
   ],
-  "workbench.productIconTheme": "fluent-icons",
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "diffEditor.codeLens": true,
   "[dockercompose]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-  }
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "vs-kubernetes": {
+    "vs-kubernetes.minikube-show-information-expiration": "2023-08-07T19:23:04.972Z"
+  },
+  "git.openRepositoryInParentFolders": "never",
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": true
+  },
+  "sqltools.connections": [],
+  "git.confirmSync": false,
+  "python.analysis.extraPaths": [],
+  "svelte.enable-ts-plugin": true,
+  "workbench.colorTheme": "Tokyo Night",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "githubPullRequests.pullBranch": "never"
 }
