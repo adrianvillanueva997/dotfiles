@@ -1,21 +1,21 @@
 [core]
-    pager = delta
-    editor = nvim
+pager = delta
+editor = nvim
 
 [interactive]
-    diffFilter = delta --color-only
+diffFilter = delta --color-only
 
 [delta]
-    navigate = true  # use n and N to move between diff sections
-    side-by-side = true
-    line-numbers = true
+navigate = true # use n and N to move between diff sections
+side-by-side = true
+line-numbers = true
 [merge]
-    conflictstyle = diff3
+conflictstyle = diff3
 [diff]
-    colorMoved = default
+colorMoved = default
 
 [includeIf "gitdir:~/proyectos/"]
-  path = ~/.gitconfig-personal
+path = ~/.gitconfig-personal
 
 [push]
-	autoSetupRemote = true
+autoSetupRemote = true
