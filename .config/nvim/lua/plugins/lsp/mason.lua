@@ -35,6 +35,7 @@ return {
 				"lua_ls",
 				"pyright",
 				"terraformls",
+				"rnix",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -43,7 +44,6 @@ return {
 			ensure_installed = {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
-				"black", -- python formatter
 				"eslint_d", -- js linter
 				"ruff",
 				"luacheck",
