@@ -5,30 +5,6 @@ command_timeout = 1000
 
 format = '$all'
 
-# format = """
-# $directory\
-# $git_branch\
-# $git_state\
-# $git_status\
-# $jobs\
-# $kubernetes\
-# $docker_context\
-# $c\
-# $terraform\
-# $cmake\
-# $deno\
-# $elixir\
-# $golang\
-# $lua\
-# $nodejs\
-# $python\
-# $rust\
-# $zig\
-# $cmd_duration\
-# $status\
-# $line_break\
-# $time $character"""
-
 [character]
 success_symbol = "[|](bold #e46876)"
 error_symbol = "[|](bold #e46876)"
