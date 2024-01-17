@@ -1,0 +1,138 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+command_timeout = 1000
+
+format = '$all'
+
+# format = """
+# $directory\
+# $git_branch\
+# $git_state\
+# $git_status\
+# $jobs\
+# $kubernetes\
+# $docker_context\
+# $c\
+# $terraform\
+# $cmake\
+# $deno\
+# $elixir\
+# $golang\
+# $lua\
+# $nodejs\
+# $python\
+# $rust\
+# $zig\
+# $cmd_duration\
+# $status\
+# $line_break\
+# $time $character"""
+
+[character]
+success_symbol = "[|](bold #e46876)"
+error_symbol = "[|](bold #e46876)"
+
+[azure]
+disabled = false
+format = 'on [$symbol($subscription)]($style) '
+symbol = '󰠅 '
+style = 'blue bold'
+
+[gcloud]
+format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
+
+
+[time]
+disabled = false
+format = '[\[$time\]]($style)'
+style = "fg:#585858"
+time_format = "%H:%M"
+
+[memory_usage]
+disabled = true
+symbol = ""
+threshold = 30
+format = "[$symbol ${ram}]($style)"
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch(:$remote_branch)]($style) "
+style = "purple"
+
+[git_status]
+format = '([\( $all_status$ahead_behind\)]($style) )'
+diverged = "<>⇡${ahead_count} ⇣${behind_count} "
+conflicted = "=${count} "
+behind = "⇣${count} "
+ahead = "⇡${count} "
+modified = "~${count} "
+untracked = "?${count} "
+stashed = "^${count} "
+staged = "+${count} "
+deleted = "x${count} "
+renamed = "»${count} "
+style = "grey"
+
+[status]
+disabled = false
+format = "[$symbol $status]($style)"
+symbol = ""
+signal_symbol = ""
+sigint_symbol = "𥉉"
+not_found_symbol = ""
+not_executable_symbol = ""
+
+[cmd_duration]
+disabled = false
+min_time = 2_000
+show_milliseconds = false
+format = " [ $duration](grey) "
+
+[directory]
+truncate_to_repo = false
+truncation_length = 1
+style = "green"
+read_only = " "
+format = '[$path]($style)[$read_only]($read_only_style) '
+
+[c]
+format = "[$symbol($version(-$name) )]($style)"
+symbol = " "
+
+[docker_context]
+format = "[$symbol$context ]($style)"
+symbol = " "
+
+[elixir]
+format = '[$symbol($version \(OTP $otp_version\) )]($style)'
+symbol = " "
+
+[golang]
+format = "[$symbol($version )]($style)"
+symbol = " "
+
+[nodejs]
+format = "[$symbol($version )]($style)"
+symbol = " "
+
+[package]
+symbol = "📦"
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = " "
+
+[rust]
+format = "[$symbol($version)]($style)"
+
+[lua]
+format = "[$symbol($version )]($style)"
+symbol = " "
+
+[jobs]
+symbol = " "
+
+[terraform]
+format = '[$symbol$version]($style) '
+
