@@ -74,6 +74,7 @@ symbol = " "
 [docker_context]
 format = "[$symbol$context ]($style)"
 symbol = " "
+disabled = true
 
 [elixir]
 format = '[$symbol($version \(OTP $otp_version\) )]($style)'
@@ -85,10 +86,10 @@ symbol = " "
 
 [nodejs]
 format = "[$symbol($version )]($style)"
-symbol = " "
+symbol = "󰎙 "
 
 [package]
-symbol = "📦"
+symbol = " "
 
 [python]
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
@@ -105,4 +106,16 @@ symbol = " "
 symbol = " "
 
 [terraform]
+symbol = "󱁢 "
 format = '[$symbol$version]($style) '
+
+[os]
+disabled = false
+format = "$symbol "
+symbols.Ubuntu = ""
+symbols.Macos = ""
+
+[shell]
+disabled = false
+bash_indicator = ""
+zsh_indicator = ""
