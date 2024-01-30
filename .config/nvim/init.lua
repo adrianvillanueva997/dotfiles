@@ -1,3 +1,0 @@
-require("Lazy")
-require("core")
-
