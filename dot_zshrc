@@ -46,7 +46,7 @@ zinit load wfxr/forgit
 # Exports
 export EDITOR=nvim
 export TERM=xterm-256color
-
+export PATH=/opt/homebrew/bin:$PATH
 # Useful stuff
 eval "$(starship init zsh)"
 _evalcache zoxide init zsh
