@@ -12,8 +12,6 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-#ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-
 zinit load atuinsh/atuin	
 zinit light Aloxaf/fzf-tab
 zinit load zsh-users/zsh-autosuggestions
