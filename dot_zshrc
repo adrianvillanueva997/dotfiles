@@ -20,8 +20,12 @@ zinit light Aloxaf/fzf-tab
 zinit load zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
 
+
 # Snippets
 zinit snippet OMZP::git
+zinit snippet OMZP::brew
+zinit snippet OMZP::argocd
+zinit snippet OMZP::archlinux
 zinit snippet OMZP::npm
 zinit snippet OMZP::pip
 zinit snippet OMZP::node
@@ -60,7 +64,7 @@ alias vim="nvim"
 alias vi="nvim"
 # alias python="python3"
 alias cat="bat"
-alias ls="lsd"
+alias ls="eza --icons --grid"
 
 # Cargo aliases
 alias co=cargo
