@@ -49,7 +49,7 @@ export PATH=/opt/homebrew/bin:$PATH
 eval "$(starship init zsh)"
 _evalcache zoxide init zsh
 eval "$(mise activate zsh)"
-eval "$(atuin init zsh
+eval "$(atuin init zsh)"
 # Aliases
 
 # Neovim aliases
