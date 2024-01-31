@@ -27,6 +27,6 @@ Temporary Items
 .apdisk
 
 # Neovim stuff
+./private_dot_config/nvim/lazy-lock.json
 
-.config/nvim/lazy-lock.json
 .tmux/plugins
