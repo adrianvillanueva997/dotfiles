@@ -95,4 +95,12 @@ alias dsa="docker ps -q | awk '{print $1}' | xargs -o docker stop"
 alias dcp="docker ps -q | awk '{print $1}' | xargs -o docker container prune"
 alias dip="docker ps -q | awk '{print $1}' | xargs -o docker image prune -a"
 
+set-window-title() {
+  # /Users/clessg/projects/dotfiles -> ~/p/dotfiles
+  window_title="\e]0;${${PWD/#"$HOME"/~}/projects/p}\a"
+  echo -ne "$window_title"
+}
 
+PR_TITLEBAR=''
+set-window-title
+add-zsh-hook precmd set-window-title
