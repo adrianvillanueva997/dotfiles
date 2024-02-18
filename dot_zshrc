@@ -54,10 +54,10 @@ export TERM=xterm-256color
 export PATH=/opt/homebrew/bin:$PATH
 # Useful stuff
 eval "$(starship init zsh)"
+_evalcache direnv hook zsh
 _evalcache zoxide init zsh
 _evalcache mise activate zsh
 _evalcache atuin init zsh
-_evalcache direnv hook zsh
 # Aliases
 
 # Neovim aliases
