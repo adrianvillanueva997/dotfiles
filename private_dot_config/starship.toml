@@ -115,6 +115,9 @@ format = "$symbol "
 symbols.Ubuntu = ""
 symbols.Macos = ""
 symbols.EndeavourOS = ""
+symbols.Arch= ""
+
+
 
 [shell]
 disabled = false
