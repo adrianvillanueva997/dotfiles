@@ -29,4 +29,4 @@ Temporary Items
 # Neovim stuff
 ./private_dot_config/nvim/lazy-lock.json
 
-.tmux/plugins
+dot_tmux/plugins
