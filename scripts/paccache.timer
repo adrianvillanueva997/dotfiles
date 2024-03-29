@@ -1,0 +1,9 @@
+[Unit]
+Description=Clean-up old pacman pkg cache
+
+[Timer]
+OnCalendar=monthly
+Persistent=true
+
+[Install]
+WantedBy=multi-user.target
