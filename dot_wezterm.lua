@@ -29,7 +29,7 @@ end
 
 local act = wezterm.action
 
-config.font = wezterm.font("FiraCode Nerd Font")
+config.font = wezterm.font("Iosevka Nerd Font")
 config.enable_scroll_bar = true
 config.disable_default_key_bindings = false
 config.color_scheme = "Material Darker (base16)"
