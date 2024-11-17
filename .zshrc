@@ -12,11 +12,10 @@ fi
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
-
 # zinit plugins
 zi light zdharma-continuum/zinit-annex-rust
 
-zinit load atuinsh/atuin	
+zinit load atuinsh/atuin
 zinit light Aloxaf/fzf-tab
 zinit load zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
