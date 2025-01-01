@@ -1,52 +1,33 @@
-# Define directories for each set of dotfiles
-DOTFILES_DIR := $(PWD)
-CONFIG_DIR := $(DOTFILES_DIR)/config
-GIT_DIR := $(DOTFILES_DIR)/git
-ZSH_DIR := $(DOTFILES_DIR)/zsh
-TMUX_DIR := $(DOTFILES_DIR)/tmux
+# Dotfiles management using GNU Stow
+DOTFILES := $(HOME)/proyectos/personal/dotfiles
+BACKUP_DIR := $(HOME)/.dotfiles.bak
+STOW_FLAGS := --verbose --target=$(HOME) --dir=$(DOTFILES) --adopt --no-folding
 
-# Define the target directory for the symlinks
-TARGET_DIR := $(HOME)
-FONTS_TARGET := $(TARGET_DIR)/.local/share/fonts
+.PHONY: stow unstow restow backup restore help
 
-.PHONY: all clean stow-config stow-git stow-zsh stow-tmux stow-fonts
+# Default target
+.DEFAULT_GOAL := stow
 
-# The default target will stow everything
-all: stow-config stow-git stow-zsh stow-tmux stow-fonts
+backup:
+	@echo "Backing up existing dotfiles..."
+	@mkdir -p $(BACKUP_DIR)
+	@for file in $(HOME)/.* ; do \
+		if [ -f "$$file" ] && [ "$$file" != "$(HOME)/." ] && [ "$$file" != "$(HOME)/.." ]; then \
+			cp -rf "$$file" "$(BACKUP_DIR)/" 2>/dev/null || true ; \
+		fi \
+	done
 
-# Stow config files
-stow-config:
-    stow --dir=$(CONFIG_DIR)/bat --target=$(TARGET_DIR)/.config bat
-    stow --dir=$(CONFIG_DIR)/direnv --target=$(TARGET_DIR)/.config direnv
-    stow --dir=$(CONFIG_DIR)/nvim --target=$(TARGET_DIR)/.config nvim
-    stow --dir=$(CONFIG_DIR)/starship --target=$(TARGET_DIR)/.config starship
+restore:
+	@echo "Restoring dotfiles from backup..."
+	@cp -rf $(BACKUP_DIR)/.* $(HOME)/ 2>/dev/null || true
 
-# Stow git dotfiles
-stow-git:
-    ln -sf $(GIT_DIR)/.gitconfig $(TARGET_DIR)/.gitconfig
+stow: backup
+	@echo "Stowing dotfiles..."
+	@stow $(STOW_FLAGS) */ || (echo "Error: Stow failed"; exit 1)
 
-# Stow zsh dotfiles
-stow-zsh:
-    stow --dir=$(ZSH_DIR) --target=$(TARGET_DIR) zsh
+unstow:
+	@echo "Removing dotfiles..."
+	@stow --delete $(STOW_FLAGS) */ || (echo "Error: Unstow failed"; exit 1)
 
-# Stow tmux dotfiles
-stow-tmux:
-    stow --dir=$(TMUX_DIR) --target=$(TARGET_DIR) tmux
-
-# Stow fonts
-stow-fonts: $(FONTS_TARGET)
-    stow --dir=$(FONTS_DIR) --target=$(FONTS_TARGET) fonts
-
-$(FONTS_TARGET):
-    mkdir -p $(FONTS_TARGET)
-
-# Clean up symlinks (unstow)
-clean:
-    stow -D --dir=$(CONFIG_DIR)/bat --target=$(TARGET_DIR)/.config bat
-    stow -D --dir=$(CONFIG_DIR)/direnv --target=$(TARGET_DIR)/.config direnv
-    stow -D --dir=$(CONFIG_DIR)/nvim --target=$(TARGET_DIR)/.config nvim
-    stow -D --dir=$(CONFIG_DIR)/starship --target=$(TARGET_DIR)/.config starship
-    rm -f $(TARGET_DIR)/.gitconfig
-    stow -D --dir=$(ZSH_DIR) --target=$(TARGET_DIR) zsh
-    stow -D --dir=$(TMUX_DIR) --target=$(TARGET_DIR) tmux
-    stow -D --dir=$(FONTS_DIR) --target=$(FONTS_TARGET) fonts
+restow: unstow stow
+	@echo "Restowing dotfiles completed"
