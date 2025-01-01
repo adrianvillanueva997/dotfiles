@@ -8,6 +8,12 @@ STOW_FLAGS := --verbose --target=$(HOME) --dir=$(DOTFILES) --adopt --no-folding
 # Default target
 .DEFAULT_GOAL := stow
 
+check-nvim:
+	@echo "Checking Neovim configuration..."
+	@test -d $(HOME)/.config/nvim || mkdir -p $(HOME)/.config/nvim
+	@test -L $(HOME)/.config/nvim/init.lua || echo "Warning: init.lua not linked"
+
+
 backup:
 	@echo "Backing up existing dotfiles..."
 	@mkdir -p $(BACKUP_DIR)

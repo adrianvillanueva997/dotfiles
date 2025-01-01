@@ -10,5 +10,5 @@ images:
 
 tools:
 
-- <https://github.com/ToxicFrog/Ligaturizer>
-- <https://github.com/ryanoasis/nerd-fonts>
+- https://github.com/ToxicFrog/Ligaturizer
+- https://github.com/ryanoasis/nerd-fonts
