@@ -1,0 +1,32 @@
+# Version Control
+
+\.git
+\.gitignore
+\.gitmodules
+
+# Documentation
+
+^/README.*
+^/LICENSE.*
+^/CHANGELOG.*
+
+# Build and Config
+
+^/Makefile
+^/\.stow-local-ignore
+
+# Specific Folders
+
+^/fonts/
+^/scripts/
+
+# Backup Files
+
+.*~
+\.bak$
+\.orig$
+
+# Other
+
+^/\.DS_Store
+^/\.directory
