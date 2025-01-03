@@ -1,5 +1,6 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
+# General settings
 add_newline = false
 command_timeout = 1000
 format = "$all"
@@ -60,7 +61,7 @@ not_executable_symbol = ""
 # Command duration settings
 [cmd_duration]
 disabled = false
-min_time = 2_000
+min_time = 2000  # Set to 2 seconds
 show_milliseconds = false
 format = " [ $duration](grey) "
 
