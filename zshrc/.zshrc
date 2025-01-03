@@ -1,6 +1,11 @@
+# Load compinit for autocompletion
 autoload -Uz compinit
-export PATH=$PATH:$(go env GOPATH)/bin
 compinit
+
+# Add Go binaries to PATH
+export PATH=$PATH:$(go env GOPATH)/bin
+
+# Zinit installation and setup
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
     command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
@@ -13,14 +18,12 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# zinit plugins
+# Zinit plugins
 zi light zdharma-continuum/zinit-annex-rust
-
-zinit load atuinsh/atuin	
+zinit load atuinsh/atuin
 zinit light Aloxaf/fzf-tab
 zinit load zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
-
 
 # Snippets
 zinit snippet OMZP::git
@@ -43,7 +46,6 @@ zinit snippet OMZP::web-search
 zinit snippet OMZP::vscode
 
 # External plugins
-
 zinit light "MichaelAquilina/zsh-you-should-use"
 zinit light "paulmelnikow/zsh-startup-timer"
 zinit load "mroth/evalcache"
@@ -53,18 +55,19 @@ zinit load wfxr/forgit
 export EDITOR=nvim
 export TERM=xterm-256color
 export PATH=/opt/homebrew/bin:$PATH
-# Useful stuff
+
+# Initialize starship prompt
 eval "$(starship init zsh)"
+
+# Initialize other tools
 _evalcache direnv hook zsh
 _evalcache zoxide init zsh
 _evalcache mise activate zsh
 _evalcache atuin init zsh
-# Aliases
 
-# Neovim aliases
+# Aliases
 alias vim="nvim"
 alias vi="nvim"
-# alias python="python3"
 alias cat="bat"
 alias ls="eza --icons --grid"
 
@@ -83,7 +86,7 @@ alias cfe='cargo fetch'
 alias cpa='cargo package'
 alias cs='cargo search'
 
-# docker-compose aliases
+# Docker-compose aliases
 alias dcu="docker-compose up -d"
 alias dcub="docker-compose up -d --build"
 alias dcs="docker-compose stop"
@@ -92,25 +95,36 @@ alias dcr="docker-compose restart"
 alias dcl="docker-compose logs"
 alias dex="docker exec -it"
 
+# Docker aliases
 alias dps="docker ps -a"
 alias dsa="docker ps -q | awk '{print $1}' | xargs -o docker stop"
 alias dcp="docker ps -q | awk '{print $1}' | xargs -o docker container prune"
 alias dip="docker ps -q | awk '{print $1}' | xargs -o docker image prune -a"
 
+# Function to set window title
 set-window-title() {
-  # /Users/clessg/projects/dotfiles -> ~/p/dotfiles
+  window_title="\e]0;${${PWD/#"$HOME"/~}/projects/p}\a"
+  echo -ne "$window_title"
+}
+# Function to set the terminal window title to the current directory path
+set-window-title() {
+  # Replace home directory with ~ and remove /projects/p prefix
   window_title="\e]0;${${PWD/#"$HOME"/~}/projects/p}\a"
   echo -ne "$window_title"
 }
 
+# Initialize the title bar variable (if needed)
 PR_TITLEBAR=''
+
+# Set the window title initially
 set-window-title
+
+# Update the window title before each command prompt
 add-zsh-hook precmd set-window-title
 
-# pnpm
+# pnpm setup
 export PNPM_HOME="/home/avm/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end

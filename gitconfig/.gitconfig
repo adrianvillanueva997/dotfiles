@@ -1,6 +1,7 @@
 [core]
 pager = delta
 editor = nvim
+excludesfile = ~/.gitignore_global
 
 [interactive]
 diffFilter = delta --color-only
@@ -9,18 +10,44 @@ diffFilter = delta --color-only
 navigate = true # use n and N to move between diff sections
 side-by-side = true
 line-numbers = true
+syntax-theme = "Monokai Extended" # Choose a syntax highlighting theme
+plus-style = "syntax #012800"     # Customize added lines
+minus-style = "syntax #340001"    # Customize removed lines
+line-numbers-left-style = "blue"  # Customize line numbers on the left
+line-numbers-right-style = "blue" # Customize line numbers on the right
+file-style = "bold yellow ul"     # Customize file headers
+hunk-header-style = "magenta"     # Customize hunk headers
+width = 120                       # Set the width to 120 columns (adjust as needed)
+
 [merge]
 conflictstyle = diff3
+
 [diff]
 colorMoved = default
 
-[includeIf "gitdir:~/proyectos/"]
-path = ~/.gitconfig-personal
-[includeIf "gitdir:~/.local/share/chezmoi/"]
-path = ~/.gitconfig-personal
-
-[includeIf "gitdir:~/.local/share/chezmoi/"]
-path = ~/.gitconfig-personal
-
 [push]
 autoSetupRemote = true
+
+[includeIf "gitdir:~/proyectos/"]
+path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/.local/share/chezmoi/"]
+path = ~/.gitconfig-personal
+
+[alias]
+st = status
+co = checkout
+br = branch
+ci = commit
+df = diff
+lg = log --oneline --graph --decorate
+amend = commit --amend
+unstage = reset HEAD --
+last = log -1 HEAD
+
+[color]
+ui = auto
+
+[credential]
+helper = cache
+cacheTimeout = 3600

@@ -1,16 +1,21 @@
+# Font settings
 font-family = Iosevka Nerd Font
-
 font-size = 11
+
+# Theme settings
 theme = MaterialDarker
+window-theme = dark
 
+# Shell integration features
 shell-integration-features = no-cursor,sudo,no-title
-cursor-style = bar
-adjust-cell-height = 15%
 
+# Cursor settings
+cursor-style = bar
 mouse-hide-while-typing = true
 
+# Window settings
+adjust-cell-height = 15%
 window-padding-balance = true
 window-save-state = always
-window-theme = dark
-macos-titlebar-style=transparent
+macos-titlebar-style = transparent
 window-colorspace = "display-p3"

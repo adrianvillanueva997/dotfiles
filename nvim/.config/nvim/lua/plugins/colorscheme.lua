@@ -3,10 +3,9 @@ return {
     name = "colorscheme material",
     priority = 1000,
     material_style = "darker",
-
     config = function()
-        require("material").setup()
         vim.g.material_style = "darker"
+        require("material").setup()
         vim.cmd("colorscheme material")
-    end
+    end,
 }
