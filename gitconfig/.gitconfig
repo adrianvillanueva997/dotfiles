@@ -7,19 +7,24 @@ excludesfile = ~/.gitignore_global
 diffFilter = delta --color-only
 
 [delta]
-navigate = true # use n and N to move between diff sections
-side-by-side = true
-line-numbers = true
-syntax-theme = "Monokai Extended" # Choose a syntax highlighting theme
-plus-style = "syntax #012800"     # Customize added lines
-minus-style = "syntax #340001"    # Customize removed lines
-line-numbers-left-style = "blue"  # Customize line numbers on the left
-line-numbers-right-style = "blue" # Customize line numbers on the right
-file-style = "bold yellow ul"     # Customize file headers
-hunk-header-style = "magenta"     # Customize hunk headers
-width = 120                       # Set the width to 120 columns (adjust as needed)
+    side-by-side = true
+    line-numbers = true
+    syntax-theme = "Monokai Extended"  # Change this to your preferred theme
+    navigate = true  # Enables navigation with arrow keys
+    hyperlinks = true  # Enables clickable file paths
+    width = 250 # Adjust width for better side-by-side view
+    plus-style = "syntax #012800"  # Green for additions
+    minus-style = "syntax #340001"  # Dark red for deletions
+    zero-style = "syntax #1c1c1c"  # Dim gray for unchanged lines
+    commit-decoration-style = "bold yellow box"
+    file-style = "bold yellow ul"
+    hunk-header-style = "bold cyan"
+
+[interactive]
+    keep-plus-minus-markers = false  # Makes diffs cleaner when staging
 
 [merge]
+  conflictstyle = diff3  # Provides more context for merge conflicts[merge]
 conflictstyle = diff3
 
 [diff]

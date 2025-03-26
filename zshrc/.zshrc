@@ -3,7 +3,7 @@ autoload -Uz compinit
 compinit
 
 # Add Go binaries to PATH
-export PATH=$PATH:$(go env GOPATH)/bin
+# export PATH=$PATH:$(go env GOPATH)/bin
 
 # Zinit installation and setup
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -47,7 +47,6 @@ zinit snippet OMZP::vscode
 
 # External plugins
 zinit light "MichaelAquilina/zsh-you-should-use"
-zinit light "paulmelnikow/zsh-startup-timer"
 zinit load "mroth/evalcache"
 zinit load wfxr/forgit
 
@@ -128,3 +127,7 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+export FORGIT_DIFF_PAGER='delta --side-by-side --line-numbers --navigate'
+export FORGIT_LOG_FORMAT="%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"
+export FORGIT_FZF_DEFAULT_OPTS='--height 90% --border --preview-window=right:70%'
+export GIT_PAGER="delta --side-by-side --line-numbers --navigate"
