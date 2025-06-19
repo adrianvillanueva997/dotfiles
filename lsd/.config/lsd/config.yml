@@ -1,0 +1,77 @@
+# == Classic ==
+classic: false
+
+# == Blocks ==
+blocks:
+  - permission
+  - user
+  - group
+  - size
+  - date
+  - name
+
+# == Color ==
+color:
+  when: auto
+  theme: default
+
+# == Date ==
+date: relative
+
+# == Dereference ==
+dereference: false
+
+# == Display ==
+# display:
+
+# == Icons ==
+icons:
+  when: always
+  theme: fancy
+  separator: " "
+
+# == Indicators ==
+indicators: true
+
+# == Layout ==
+layout: grid
+
+# == Recursion ==
+recursion:
+  enabled: false
+  depth: 2
+
+# == Size ==
+size: short
+
+# == Permission ==
+# permission: rwx
+
+# == Sorting ==
+sorting:
+  column: name
+  reverse: false
+  dir-grouping: first
+
+# == No Symlink ==
+no-symlink: false
+
+# == Total size ==
+total-size: true
+
+# == Hyperlink ==
+hyperlink: auto
+
+# == Symlink arrow ==
+symlink-arrow: ⇒
+
+# == Header ==
+header: true
+
+# == Literal ==
+literal: false
+
+# == Truncate owner ==
+truncate-owner:
+  after: 10
+  marker: "…"

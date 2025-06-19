@@ -1,7 +1,7 @@
 # Load compinit for autocompletion
 autoload -Uz compinit
 compinit
-
+#export LIBRARY_PATH="$LIBRARY_PATH:$(brew --prefix)/lib"
 # Add Go binaries to PATH
 # export PATH=$PATH:$(go env GOPATH)/bin
 
@@ -68,7 +68,7 @@ _evalcache atuin init zsh
 alias vim="nvim"
 alias vi="nvim"
 alias cat="bat"
-alias ls="eza --icons --grid"
+alias ls="lsd"
 
 # Cargo aliases
 alias co=cargo
@@ -131,3 +131,6 @@ export FORGIT_DIFF_PAGER='delta --side-by-side --line-numbers --navigate'
 export FORGIT_LOG_FORMAT="%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"
 export FORGIT_FZF_DEFAULT_OPTS='--height 90% --border --preview-window=right:70%'
 export GIT_PAGER="delta --side-by-side --line-numbers --navigate"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
