@@ -57,7 +57,7 @@ sorting:
 no-symlink: false
 
 # == Total size ==
-total-size: true
+total-size: false
 
 # == Hyperlink ==
 hyperlink: auto
