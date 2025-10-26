@@ -31,22 +31,23 @@ time_format = "%H:%M"
 # Git settings
 [git_branch]
 symbol = " "
-format = "[$symbol$branch(:$remote_branch)]($style) "
+format = "[$symbol$branch$ahead_behind(:$remote_branch)]($style) "
 style = "purple"
 
 [git_status]
-format = "([$all_status$ahead_behind]($style))"
+# Use only $all_status here; $ahead_behind belongs in git_branch.
+# Don't use bare [...] without a following (style) — use plain parentheses or escape brackets.
+format = "($all_status)"
 diverged = "<>⇡ ${ahead_count} ⇣ ${behind_count} "
-conflicted = "=${count} "
-behind = "⇣${count}"
-ahead = "⇡${count}"
-modified = "~${count}"
-untracked = "?${count}"
-stashed = "^${count}"
-staged = "+${count}"
-deleted = "x${count}"
-renamed = "»${count}"
-style = "red"
+conflicted = "[=${count}](red) "
+behind = "[⇣${count}](cyan) "
+ahead = "[⇡${count}](purple) "
+modified = "[~${count}](yellow) "
+untracked = "[?${count}](blue) "
+stashed = "[^${count}](magenta) "
+staged = "[+${count}](green) "
+deleted = "[x${count}](red) "
+renamed = "[»${count}](cyan) "
 
 # Status settings
 [status]
