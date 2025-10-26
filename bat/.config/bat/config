@@ -25,4 +25,6 @@
 
 # Specify the style of the output. You can use a comma-separated list of
 # values: "auto", "changes", "grid", "header", "numbers", "rule", "snip"
---style="header,snip"
+--style="header,numbers,snip"
+# When piped, consider disabling the pager in your shell with:
+# export BAT_PAGER="less -r"

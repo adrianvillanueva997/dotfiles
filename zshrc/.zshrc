@@ -19,13 +19,24 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Zinit plugins
-zi light zdharma-continuum/zinit-annex-rust
-zinit load atuinsh/atuin
-zinit light Aloxaf/fzf-tab
-zinit load zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
+# Performance & caching (load early)
+zinit load "mroth/evalcache"
+zinit light mafredri/zsh-async
 
-# Snippets
+# Core & language helpers
+zi light zdharma-continuum/zinit-annex-rust
+
+# Syntax highlighting & suggestions (early for UX)
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit load zsh-users/zsh-autosuggestions
+
+# Completion & UX
+zinit light Aloxaf/fzf-tab
+
+# History & navigation
+zinit load atuinsh/atuin
+
+# Snippets (OMZP - Oh My Zsh Plugin snippets)
 zinit snippet OMZP::git
 zinit snippet OMZP::brew
 zinit snippet OMZP::argocd
@@ -45,10 +56,18 @@ zinit snippet OMZP::git-auto-fetch
 zinit snippet OMZP::web-search
 zinit snippet OMZP::vscode
 
-# External plugins
-zinit light "MichaelAquilina/zsh-you-should-use"
 zinit load "mroth/evalcache"
 zinit load wfxr/forgit
+# External / third-party plugins
+# Productivity & recommendations
+zinit light "MichaelAquilina/zsh-you-should-use"
+
+# Performance & caching
+zinit load "mroth/evalcache"
+
+# Git UX tools
+zinit load wfxr/forgit
+zinit light paulirish/git-open
 
 # Exports
 export EDITOR=nvim
@@ -96,15 +115,11 @@ alias dex="docker exec -it"
 
 # Docker aliases
 alias dps="docker ps -a"
-alias dsa="docker ps -q | awk '{print $1}' | xargs -o docker stop"
-alias dcp="docker ps -q | awk '{print $1}' | xargs -o docker container prune"
-alias dip="docker ps -q | awk '{print $1}' | xargs -o docker image prune -a"
+# safer: guard against empty input before xargs (portable on macOS)
+alias dsa='ids=$(docker ps -q); [ -n "$ids" ] && echo "$ids" | xargs docker stop'
+alias dcp='ids=$(docker ps -q); [ -n "$ids" ] && echo "$ids" | xargs docker container prune'
+alias dip='ids=$(docker ps -q); [ -n "$ids" ] && echo "$ids" | xargs docker image prune -a'
 
-# Function to set window title
-set-window-title() {
-  window_title="\e]0;${${PWD/#"$HOME"/~}/projects/p}\a"
-  echo -ne "$window_title"
-}
 # Function to set the terminal window title to the current directory path
 set-window-title() {
   # Replace home directory with ~ and remove /projects/p prefix
@@ -121,8 +136,8 @@ set-window-title
 # Update the window title before each command prompt
 add-zsh-hook precmd set-window-title
 
-# pnpm setup
-export PNPM_HOME="/home/avm/.local/share/pnpm"
+# pnpm setup (portable)
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
