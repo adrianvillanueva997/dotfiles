@@ -7,8 +7,8 @@ format = "$all"
 
 # Character settings
 [character]
-success_symbol = "[|](bold #e46876)"
-error_symbol = "[|](bold #e46876)"
+success_symbol = " [➜](fg:#7adba0 bold) "
+error_symbol = "[✖](fg:#ff6b6b bold) "
 
 # Azure configuration
 [azure]
@@ -31,23 +31,23 @@ time_format = "%H:%M"
 # Git settings
 [git_branch]
 symbol = " "
-format = "[$symbol$branch$ahead_behind(:$remote_branch)]($style) "
-style = "purple"
+format = "[$symbol$branch(:$remote_branch)]($style) "
+style = "fg:#7C6FFF bold"
+
 
 [git_status]
-# Use only $all_status here; $ahead_behind belongs in git_branch.
-# Don't use bare [...] without a following (style) — use plain parentheses or escape brackets.
-format = "($all_status)"
+format = "([$all_status$ahead_behind]($style))"
 diverged = "<>⇡ ${ahead_count} ⇣ ${behind_count} "
-conflicted = "[=${count}](red) "
-behind = "[⇣${count}](cyan) "
-ahead = "[⇡${count}](purple) "
-modified = "[~${count}](yellow) "
-untracked = "[?${count}](blue) "
-stashed = "[^${count}](magenta) "
-staged = "[+${count}](green) "
-deleted = "[x${count}](red) "
-renamed = "[»${count}](cyan) "
+conflicted = "[=${count}](fg:#ff6b6b bold) "
+behind = "[⇣ ${count}](fg:#ff6b6b) "
+ahead = "[⇡ ${count}](fg:#7C6FFF) "
+modified = "[~${count}](fg:#ff6b6b bold)"
+untracked = "[?${count}](fg:#89ddff)"
+stashed = "[^${count}](fg:#ff79c6)"
+staged = "[+${count}](fg:#50fa7b)"
+deleted = "[x${count}](fg:#ff5555)"
+renamed = "[»${count}](fg:#8be9fd)"
+style = "fg:#ff6b6b"
 
 # Status settings
 [status]
@@ -62,7 +62,7 @@ not_executable_symbol = ""
 # Command duration settings
 [cmd_duration]
 disabled = false
-min_time = 2000  # Set to 2 seconds
+min_time = 500                   # Show durations for commands >500ms
 show_milliseconds = false
 format = " [ $duration](grey) "
 
@@ -70,7 +70,7 @@ format = " [ $duration](grey) "
 [directory]
 truncate_to_repo = false
 truncation_length = 1
-style = "green"
+style = "fg:#7adba0"
 read_only = " "
 format = "[$path]($style)[$read_only]($read_only_style) "
 
@@ -81,7 +81,7 @@ symbol = " "
 
 [docker_context]
 disabled = true
-format = "[$symbol$context ]($style)"
+format = "[$symbol]($style) "
 symbol = " "
 
 [elixir]
@@ -111,6 +111,7 @@ symbol = " "
 # Package manager settings
 [package]
 symbol = " "
+style = "fg:#ffb86b"
 
 # Terraform settings
 [terraform]
