@@ -1,2 +1,3 @@
--- bootstrap lazy.nvim, LazyVim and your plugins
-require("config.lazy")
+require("avm.core")
+require("avm.lazy")
+require("avm.current-theme")
