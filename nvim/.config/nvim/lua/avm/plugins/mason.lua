@@ -26,13 +26,35 @@ return { -- Mason core
         local mason_lspconfig = require("mason-lspconfig")
         local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-        local on_attach = function(client, bufnr)
-            if client.server_capabilities.inlayHintProvider then
-                vim.lsp.inlay_hint.enable(true, {
-                    bufnr = bufnr
-                })
+        -- Global LspAttach autocommand for keymaps and options
+        vim.api.nvim_create_autocmd("LspAttach", {
+            group = vim.api.nvim_create_augroup("UserLspConfig", {
+                clear = true
+            }),
+            callback = function(event)
+                local client = vim.lsp.get_client_by_id(event.data.client_id)
+                local map = function(keys, func, desc)
+                    vim.keymap.set("n", keys, func, {
+                        buffer = event.buf,
+                        desc = "LSP: " .. desc
+                    })
+                end
+
+                -- Enable Inlay Hints if supported
+                if client.server_capabilities.inlayHintProvider then
+                    vim.lsp.inlay_hint.enable(true, {
+                        bufnr = event.buf
+                    })
+                    map("<leader>th", function()
+                        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({
+                            bufnr = event.buf
+                        }), {
+                            bufnr = event.buf
+                        })
+                    end, "Toggle Inlay Hints")
+                end
             end
-        end
+        })
 
         mason_lspconfig.setup({
             ensure_installed = opts.ensure_installed,
@@ -40,14 +62,12 @@ return { -- Mason core
             handlers = {
                 function(server_name)
                     require("lspconfig")[server_name].setup({
-                        capabilities = capabilities,
-                        on_attach = on_attach
+                        capabilities = capabilities
                     })
                 end,
                 ["ts_ls"] = function()
                     require("lspconfig").ts_ls.setup({
                         capabilities = capabilities,
-                        on_attach = on_attach,
                         settings = {
                             typescript = {
                                 inlayHints = {
@@ -77,7 +97,6 @@ return { -- Mason core
                 ["lua_ls"] = function()
                     require("lspconfig").lua_ls.setup({
                         capabilities = capabilities,
-                        on_attach = on_attach,
                         settings = {
                             Lua = {
                                 hint = {
@@ -90,7 +109,6 @@ return { -- Mason core
                 ["rust_analyzer"] = function()
                     require("lspconfig").rust_analyzer.setup({
                         capabilities = capabilities,
-                        on_attach = on_attach,
                         settings = {
                             ["rust-analyzer"] = {
                                 inlayHints = {
@@ -132,7 +150,6 @@ return { -- Mason core
                 ["basedpyright"] = function()
                     require("lspconfig").basedpyright.setup({
                         capabilities = capabilities,
-                        on_attach = on_attach,
                         settings = {
                             basedpyright = {
                                 analysis = {
