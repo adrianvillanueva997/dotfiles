@@ -42,9 +42,7 @@ return { -- Mason core
 
                 -- Enable Inlay Hints if supported
                 if client.server_capabilities.inlayHintProvider then
-                    vim.lsp.inlay_hint.enable(true, {
-                        bufnr = event.buf
-                    })
+                    -- vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
                     map("<leader>th", function()
                         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({
                             bufnr = event.buf
@@ -107,46 +105,8 @@ return { -- Mason core
                     })
                 end,
                 ["rust_analyzer"] = function()
-                    require("lspconfig").rust_analyzer.setup({
-                        capabilities = capabilities,
-                        settings = {
-                            ["rust-analyzer"] = {
-                                inlayHints = {
-                                    bindingModeHints = {
-                                        enable = true
-                                    },
-                                    chainingHints = {
-                                        enable = true
-                                    },
-                                    closingBraceHints = {
-                                        enable = true,
-                                        minLines = 25
-                                    },
-                                    closureReturnTypeHints = {
-                                        enable = "always"
-                                    },
-                                    lifetimeElisionHints = {
-                                        enable = "always",
-                                        useParameterNames = true
-                                    },
-                                    maxLength = 25,
-                                    parameterHints = {
-                                        enable = true
-                                    },
-                                    reborrowHints = {
-                                        enable = "always"
-                                    },
-                                    renderColons = true,
-                                    typeHints = {
-                                        enable = true,
-                                        hideClosureInitialization = false,
-                                        hideNamedConstructor = false
-                                    }
-                                }
-                            }
-                        }
-                    })
                 end,
+                ["gopls"] = function() end,
                 ["basedpyright"] = function()
                     require("lspconfig").basedpyright.setup({
                         capabilities = capabilities,
@@ -172,6 +132,6 @@ return { -- Mason core
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     event = "VeryLazy",
     opts = {
-        ensure_installed = {"stylua", "shellcheck", "shfmt", "ruff", "biome", "golangci-lint"}
+        ensure_installed = {"stylua", "shellcheck", "shfmt", "ruff", "biome", "golangci-lint", "codelldb", "delve", "gofumpt"}
     }
 }}
