@@ -1,17 +1,26 @@
 return {{
     "nvim-treesitter/nvim-treesitter",
+    event = {"BufReadPre", "BufNewFile"},
     cmd = {"TSUpdate", "TSInstall", "TSLog", "TSUninstall"},
     opts_extend = {"ensure_installed"},
     build = ":TSUpdate",
-    branch = "main",
     config = function()
         -- import nvim-treesitter plugin
         local treesitter = require("nvim-treesitter.configs")
         -- configure treesitter
         treesitter.setup({ -- enable syntax highlighting
             highlight = {
-                enable = true
-                -- disable = { "python" },
+                enable = true,
+                disable = function(lang, buf)
+                    local max_filesize = 100 * 1024 -- 100 KB
+                    local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+                    if ok and stats and stats.size > max_filesize then
+                        return true
+                    end
+                    if lang == "python" then
+                        return true
+                    end
+                end
             },
             folds = {
                 enable = true
@@ -22,7 +31,7 @@ return {{
             },
             -- ensure these languages parsers are installed
             ensure_installed = {"bash", "html", "javascript", "json", "lua", "markdown", "markdown_inline", "python",
-                                "regex", "tsx", "typescript", "vim", "yaml", "python", "zig"},
+                                "regex", "rust", "tsx", "typescript", "vim", "yaml", "zig"},
             incremental_selection = {
                 enable = true,
                 keymaps = {
