@@ -13,5 +13,34 @@ return {
             },
             nerdfont = true -- whether use nerdfont
         })
-    end
+    end,
+    keys = {{
+        "<leader>ta",
+        "<cmd>$tabnew<cr>",
+        desc = "New Tab"
+    }, {
+        "<leader>tc",
+        "<cmd>tabclose<cr>",
+        desc = "Close Tab"
+    }, {
+        "<leader>to",
+        "<cmd>tabonly<cr>",
+        desc = "Close Other Tabs"
+    }, {
+        "<leader>tn",
+        "<cmd>tabn<cr>",
+        desc = "Next Tab"
+    }, {
+        "<leader>tp",
+        "<cmd>tabp<cr>",
+        desc = "Previous Tab"
+    }, {
+        "<leader>tmp",
+        "<cmd>-tabmove<cr>",
+        desc = "Move Tab Previous"
+    }, {
+        "<leader>tmn",
+        "<cmd>+tabmove<cr>",
+        desc = "Move Tab Next"
+    }}
 }

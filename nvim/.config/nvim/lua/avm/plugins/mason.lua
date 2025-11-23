@@ -106,7 +106,8 @@ return { -- Mason core
                 end,
                 ["rust_analyzer"] = function()
                 end,
-                ["gopls"] = function() end,
+                ["gopls"] = function()
+                end,
                 ["basedpyright"] = function()
                     require("lspconfig").basedpyright.setup({
                         capabilities = capabilities,
@@ -132,6 +133,7 @@ return { -- Mason core
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     event = "VeryLazy",
     opts = {
-        ensure_installed = {"stylua", "shellcheck", "shfmt", "ruff", "biome", "golangci-lint", "codelldb", "delve", "gofumpt"}
+        ensure_installed = {"stylua", "shellcheck", "shfmt", "ruff", "biome", "golangci-lint", "codelldb", "delve",
+                            "gofumpt"}
     }
 }}
