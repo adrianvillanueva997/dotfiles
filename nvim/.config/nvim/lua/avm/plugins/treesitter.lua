@@ -4,7 +4,7 @@ return {{
     build = ":TSUpdate",
     main = "nvim-treesitter.configs",
     opts = {
-        ensure_installed = {"bash", "html", "javascript", "json", "lua", "markdown", "markdown_inline",
+        ensure_installed = {"bash", "html", "javascript", "json", "lua", "markdown", "markdown_inline", "python",
                             "regex", "rust", "tsx", "typescript", "vim", "yaml", "zig"},
         highlight = {
             enable = true,

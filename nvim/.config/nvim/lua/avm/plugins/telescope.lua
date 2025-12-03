@@ -41,11 +41,49 @@ return {
                     i = {
                         ["<C-k>"] = actions.move_selection_previous, -- move to prev result
                         ["<C-j>"] = actions.move_selection_next, -- move to next result
-                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-                        ["<CR>"] = actions.select_tab -- Open in new tab on Enter
-                    },
-                    n = {
-                        ["<CR>"] = actions.select_tab -- Open in new tab on Enter
+                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist
+                    }
+                }
+            },
+            pickers = {
+                find_files = {
+                    mappings = {
+                        n = {
+                            ["<CR>"] = actions.select_tab
+                        },
+                        i = {
+                            ["<CR>"] = actions.select_tab
+                        }
+                    }
+                },
+                oldfiles = {
+                    mappings = {
+                        n = {
+                            ["<CR>"] = actions.select_tab
+                        },
+                        i = {
+                            ["<CR>"] = actions.select_tab
+                        }
+                    }
+                },
+                live_grep = {
+                    mappings = {
+                        n = {
+                            ["<CR>"] = actions.select_tab
+                        },
+                        i = {
+                            ["<CR>"] = actions.select_tab
+                        }
+                    }
+                },
+                grep_string = {
+                    mappings = {
+                        n = {
+                            ["<CR>"] = actions.select_tab
+                        },
+                        i = {
+                            ["<CR>"] = actions.select_tab
+                        }
                     }
                 }
             }
