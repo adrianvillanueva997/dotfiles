@@ -40,6 +40,23 @@ return { -- Mason core
                     })
                 end
 
+                -- Standard LSP Keymaps
+                map("gd", vim.lsp.buf.definition, "Go to Definition")
+                map("gr", require("telescope.builtin").lsp_references, "Go to References")
+                map("gI", require("telescope.builtin").lsp_implementations, "Go to Implementation")
+                map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+                map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "Document Symbols")
+                map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols")
+                map("<leader>rn", vim.lsp.buf.rename, "Rename")
+                map("K", vim.lsp.buf.hover, "Hover Documentation")
+                map("gD", vim.lsp.buf.declaration, "Go to Declaration")
+
+                -- Diagnostics
+                map("<leader>d", vim.diagnostic.open_float, "Show Line Diagnostics")
+                map("[d", vim.diagnostic.goto_prev, "Previous Diagnostic")
+                map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
+                map("<leader>q", vim.diagnostic.setloclist, "Open Diagnostic List")
+
                 -- Enable Inlay Hints if supported
                 if client.server_capabilities.inlayHintProvider then
                     -- vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })

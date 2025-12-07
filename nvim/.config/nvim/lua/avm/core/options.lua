@@ -8,3 +8,6 @@ vim.opt.splitright = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.termguicolors = true
+vim.opt.hidden = true -- Allow switching buffers without saving
+vim.opt.autowrite = false -- Do not auto-write on buffer switch
+-- vim.opt.confirm = true -- Disabled to prevent prompts for untitled buffers

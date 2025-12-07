@@ -27,7 +27,40 @@ return -- lazy.nvim
                 long_message_to_split = true, -- long messages will be sent to a split
                 inc_rename = false, -- enables an input dialog for inc-rename.nvim
                 lsp_doc_border = false -- add a border to hover docs and signature help
-            }
+            },
+            routes = {{
+                filter = {
+                    event = "notify",
+                    find = "position_encoding param is required"
+                },
+                opts = {
+                    skip = true
+                }
+            }, {
+                filter = {
+                    event = "notify",
+                    find = "multiple different client offset_encodings"
+                },
+                opts = {
+                    skip = true
+                }
+            }, {
+                filter = {
+                    event = "notify",
+                    find = "vim.lsp.util.jump_to_location is deprecated"
+                },
+                opts = {
+                    skip = true
+                }
+            }, {
+                filter = {
+                    event = "notify",
+                    find = "client.supports_method is deprecated"
+                },
+                opts = {
+                    skip = true
+                }
+            }}
         })
     end
 }
