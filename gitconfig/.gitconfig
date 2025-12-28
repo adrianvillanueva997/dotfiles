@@ -37,6 +37,9 @@
 [includeIf "gitdir:~/proyectos/"]
 path = ~/.gitconfig-personal
 
+[includeIf "gitdir:~/metalops/"]
+    path = ~/.gitconfig-metalops
+
 [alias]
     st = status
     co = checkout

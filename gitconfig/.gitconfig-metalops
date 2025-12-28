@@ -1,0 +1,6 @@
+[user]
+    name = Adrian Villanueva 
+    email = adrianvillanueva997@gmail.com  #TODO: Update this to adrian@metalvops.dev
+
+[core]
+    sshCommand = "ssh -i ~/.ssh/metalops -F /dev/null"
