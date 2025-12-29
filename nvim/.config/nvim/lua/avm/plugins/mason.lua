@@ -10,8 +10,11 @@ return { -- Mason core
                 package_pending = "➜",
                 package_uninstalled = "✗"
             },
-            border = "rounded"
-        }
+            border = "rounded",
+            width = 0.8,
+            height = 0.8
+        },
+        max_concurrent_installers = 10
     }
 }, -- Mason LSPConfig: only LSP servers
 {
@@ -19,12 +22,60 @@ return { -- Mason core
     event = {"BufReadPre", "BufNewFile"},
     dependencies = {"mason-org/mason.nvim", "neovim/nvim-lspconfig"},
     opts = {
-        ensure_installed = {"lua_ls", "basedpyright", "rust_analyzer", "gopls", "ts_ls", "zls"},
+        ensure_installed = {"lua_ls", "basedpyright", "ruff", "gopls", "ts_ls", "zls"},
         automatic_installation = true
     },
     config = function(_, opts)
         local mason_lspconfig = require("mason-lspconfig")
         local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+        -- Better diagnostic configuration
+        vim.diagnostic.config({
+            virtual_text = {
+                spacing = 4,
+                prefix = "●",
+                severity = {
+                    min = vim.diagnostic.severity.HINT
+                }
+            },
+            signs = true,
+            underline = true,
+            update_in_insert = false,
+            severity_sort = true,
+            float = {
+                border = "rounded",
+                source = "if_many",
+                header = "",
+                prefix = ""
+            }
+        })
+
+        -- Custom diagnostic signs
+        local signs = {
+            Error = " ",
+            Warn = " ",
+            Hint = " ",
+            Info = " "
+        }
+        for type, icon in pairs(signs) do
+            local hl = "DiagnosticSign" .. type
+            vim.fn.sign_define(hl, {
+                text = icon,
+                texthl = hl,
+                numhl = hl
+            })
+        end
+
+        -- Wrap inlay hint functions to suppress errors
+        local original_enable = vim.lsp.inlay_hint.enable
+        vim.lsp.inlay_hint.enable = function(enable, filter)
+            local ok, result = pcall(original_enable, enable, filter)
+            if not ok then
+                -- Silently ignore inlay hint errors
+                return
+            end
+            return result
+        end
 
         -- Global LspAttach autocommand for keymaps and options
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -33,8 +84,13 @@ return { -- Mason core
             }),
             callback = function(event)
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
-                local map = function(keys, func, desc)
-                    vim.keymap.set("n", keys, func, {
+                if not client then
+                    return
+                end
+
+                local map = function(keys, func, desc, mode)
+                    mode = mode or "n"
+                    vim.keymap.set(mode, keys, func, {
                         buffer = event.buf,
                         desc = "LSP: " .. desc
                     })
@@ -57,15 +113,53 @@ return { -- Mason core
                 map("]d", vim.diagnostic.goto_next, "Next Diagnostic")
                 map("<leader>q", vim.diagnostic.setloclist, "Open Diagnostic List")
 
-                -- Enable Inlay Hints if supported
-                if client.server_capabilities.inlayHintProvider then
-                    -- vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+                -- Code actions
+                map("<leader>ca", vim.lsp.buf.code_action, "Code Action", {"n", "v"})
+
+                -- Highlight symbol under cursor
+                if client.supports_method("textDocument/documentHighlight") then
+                    local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", {
+                        clear = false
+                    })
+                    vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, {
+                        buffer = event.buf,
+                        group = highlight_augroup,
+                        callback = vim.lsp.buf.document_highlight
+                    })
+                    vim.api.nvim_create_autocmd({"CursorMoved", "CursorMovedI"}, {
+                        buffer = event.buf,
+                        group = highlight_augroup,
+                        callback = vim.lsp.buf.clear_references
+                    })
+                    vim.api.nvim_create_autocmd("LspDetach", {
+                        group = vim.api.nvim_create_augroup("lsp-detach", {
+                            clear = true
+                        }),
+                        callback = function(event2)
+                            vim.lsp.buf.clear_references()
+                            vim.api.nvim_clear_autocmds({
+                                group = "lsp-highlight",
+                                buffer = event2.buf
+                            })
+                        end
+                    })
+                end
+
+                -- Enable Inlay Hints if supported (wrapped to catch errors)
+                if client.supports_method("textDocument/inlayHint") then
+                    pcall(vim.lsp.inlay_hint.enable, true, {
+                        bufnr = event.buf
+                    })
+
                     map("<leader>th", function()
-                        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({
-                            bufnr = event.buf
-                        }), {
-                            bufnr = event.buf
-                        })
+                        pcall(function()
+                            local enabled = vim.lsp.inlay_hint.is_enabled({
+                                bufnr = event.buf
+                            })
+                            vim.lsp.inlay_hint.enable(not enabled, {
+                                bufnr = event.buf
+                            })
+                        end)
                     end, "Toggle Inlay Hints")
                 end
             end
@@ -83,13 +177,22 @@ return { -- Mason core
                 ["ts_ls"] = function()
                     require("lspconfig").ts_ls.setup({
                         capabilities = capabilities,
+                        on_attach = function(client, bufnr)
+                            -- Enable inlay hints for TypeScript
+                            if client.supports_method("textDocument/inlayHint") then
+                                vim.lsp.inlay_hint.enable(true, {
+                                    bufnr = bufnr
+                                })
+                            end
+                        end,
                         settings = {
                             typescript = {
                                 inlayHints = {
                                     includeInlayParameterNameHints = "all",
-                                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                    includeInlayParameterNameHintsWhenArgumentMatchesName = true, -- Changed to true
                                     includeInlayFunctionParameterTypeHints = true,
                                     includeInlayVariableTypeHints = true,
+                                    includeInlayVariableTypeHintsWhenTypeMatchesName = true, -- Added
                                     includeInlayPropertyDeclarationTypeHints = true,
                                     includeInlayFunctionLikeReturnTypeHints = true,
                                     includeInlayEnumMemberValueHints = true
@@ -98,9 +201,10 @@ return { -- Mason core
                             javascript = {
                                 inlayHints = {
                                     includeInlayParameterNameHints = "all",
-                                    includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
                                     includeInlayFunctionParameterTypeHints = true,
                                     includeInlayVariableTypeHints = true,
+                                    includeInlayVariableTypeHintsWhenTypeMatchesName = true,
                                     includeInlayPropertyDeclarationTypeHints = true,
                                     includeInlayFunctionLikeReturnTypeHints = true,
                                     includeInlayEnumMemberValueHints = true
@@ -114,16 +218,52 @@ return { -- Mason core
                         capabilities = capabilities,
                         settings = {
                             Lua = {
+                                runtime = {
+                                    version = "LuaJIT"
+                                },
+                                workspace = {
+                                    checkThirdParty = false,
+                                    library = {vim.env.VIMRUNTIME}
+                                },
+                                completion = {
+                                    callSnippet = "Replace"
+                                },
                                 hint = {
                                     enable = true
+                                },
+                                telemetry = {
+                                    enable = false
                                 }
                             }
                         }
                     })
                 end,
+                -- rust_analyzer is handled by rustaceanvim, so we skip it
                 ["rust_analyzer"] = function()
                 end,
                 ["gopls"] = function()
+                    require("lspconfig").gopls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            gopls = {
+                                analyses = {
+                                    unusedparams = true,
+                                    shadow = true
+                                },
+                                staticcheck = true,
+                                gofumpt = true,
+                                hints = {
+                                    assignVariableTypes = true,
+                                    compositeLiteralFields = true,
+                                    compositeLiteralTypes = true,
+                                    constantValues = true,
+                                    functionTypeParameters = true,
+                                    parameterNames = true,
+                                    rangeVariableTypes = true
+                                }
+                            }
+                        }
+                    })
                 end,
                 ["basedpyright"] = function()
                     require("lspconfig").basedpyright.setup({
@@ -131,13 +271,67 @@ return { -- Mason core
                         settings = {
                             basedpyright = {
                                 analysis = {
+                                    autoSearchPaths = true,
+                                    diagnosticMode = "openFilesOnly",
+                                    useLibraryCodeForTypes = true,
+                                    typeCheckingMode = "standard",
+                                    autoImportCompletions = true,
+                                    diagnosticSeverityOverrides = {
+                                        reportUnusedImport = "information",
+                                        reportUnusedVariable = "information"
+                                    },
                                     inlayHints = {
                                         variableTypes = true,
                                         functionReturnTypes = true,
-                                        callArgumentNames = true,
+                                        callArgumentNames = "partial",
                                         pytestParameters = true
                                     }
                                 }
+                            }
+                        }
+                    })
+                end,
+                ["ruff"] = function()
+                    require("lspconfig").ruff.setup({
+                        capabilities = capabilities,
+                        init_options = {
+                            settings = {
+                                lineLength = 88,
+                                lint = {
+                                    enable = true,
+                                    select = {"ALL"}
+                                },
+                                format = {
+                                    preview = true
+                                }
+                            }
+                        },
+                        on_attach = function(client, bufnr)
+                            client.server_capabilities.hoverProvider = false
+
+                            -- Format with Ruff on save
+                            vim.api.nvim_create_autocmd("BufWritePre", {
+                                buffer = bufnr,
+                                callback = function()
+                                    vim.lsp.buf.format({
+                                        async = false,
+                                        filter = function(c)
+                                            return c.name == "ruff"
+                                        end
+                                    })
+                                end
+                            })
+                        end
+                    })
+                end,
+                ["zls"] = function()
+                    require("lspconfig").zls.setup({
+                        capabilities = capabilities,
+                        settings = {
+                            zls = {
+                                enable_inlay_hints = true,
+                                inlay_hints_show_variable_type_hints = true,
+                                inlay_hints_show_parameter_name = true
                             }
                         }
                     })
@@ -150,7 +344,14 @@ return { -- Mason core
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     event = "VeryLazy",
     opts = {
-        ensure_installed = {"stylua", "shellcheck", "shfmt", "ruff", "biome", "golangci-lint", "codelldb", "delve",
-                            "gofumpt"}
+        ensure_installed = { -- Lua
+        "stylua", -- Shell
+        "shellcheck", "shfmt", -- Python
+        "ruff", -- JavaScript/TypeScript
+        "biome", "prettier", -- Go
+        "golangci-lint", "gofumpt", "goimports", -- Debuggers
+        "codelldb", "delve"},
+        auto_update = false,
+        run_on_start = true
     }
 }}
