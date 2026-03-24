@@ -22,7 +22,7 @@ return { -- Mason core
     event = {"BufReadPre", "BufNewFile"},
     dependencies = {"mason-org/mason.nvim", "neovim/nvim-lspconfig"},
     opts = {
-        ensure_installed = {"lua_ls", "ty", "ruff", "gopls", "ts_ls", "zls"},
+        ensure_installed = {"lua_ls", "ty", "ruff", "gopls", "ts_ls", "zls", "tofu_ls"},
         automatic_installation = true
     },
     config = function(_, opts)
@@ -329,6 +329,9 @@ return { -- Mason core
                 end
             }
         })
+
+        -- Re-trigger FileType so LSP attaches to the buffer that triggered lazy load
+        vim.cmd("doautocmd FileType")
     end
 }, -- Mason Tool Installer (formatters, linters)
 {
