@@ -1,7 +1,8 @@
 [tools]
 go = "latest"
-neovim = "latest"
+neovim = "0.11.2"
 node = "latest"
+opencode = "latest"
 opentofu = "latest"
 python = "latest"
 uv = "latest"
