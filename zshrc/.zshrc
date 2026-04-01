@@ -57,7 +57,6 @@ zinit snippet OMZP::web-search
 zinit snippet OMZP::vscode
 
 zinit load "mroth/evalcache"
-zinit load wfxr/forgit
 # External / third-party plugins
 # Productivity & recommendations
 zinit light "MichaelAquilina/zsh-you-should-use"
@@ -66,7 +65,6 @@ zinit light "MichaelAquilina/zsh-you-should-use"
 zinit load "mroth/evalcache"
 
 # Git UX tools
-zinit load wfxr/forgit
 zinit light paulirish/git-open
 
 # Exports
@@ -142,10 +140,6 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-export FORGIT_DIFF_PAGER='delta --side-by-side --line-numbers --navigate'
-export FORGIT_LOG_FORMAT="%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"
-export FORGIT_FZF_DEFAULT_OPTS='--height 90% --border --preview-window=right:70%'
-export GIT_PAGER="delta --side-by-side --line-numbers --navigate"
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
