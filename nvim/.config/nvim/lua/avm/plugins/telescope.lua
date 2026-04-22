@@ -111,10 +111,10 @@ return {
                 }
             },
             pickers = {
-                find_files = {
-                    hidden = false, -- Use <leader>fF for hidden files
-                    mappings = open_in_tab
-                },
+            find_files = {
+                hidden = true, -- Show hidden files by default
+                mappings = open_in_tab
+            },
                 oldfiles = {
                     mappings = open_in_tab
                 },
