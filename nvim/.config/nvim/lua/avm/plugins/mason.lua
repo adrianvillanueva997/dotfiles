@@ -108,7 +108,7 @@ return { -- Mason core
                 map("<leader>ca", vim.lsp.buf.code_action, "Code Action", {"n", "v"})
 
                 -- Highlight symbol under cursor
-                if client.supports_method("textDocument/documentHighlight") then
+                if client:supports_method("textDocument/documentHighlight") then
                     local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", {
                         clear = false
                     })
@@ -137,7 +137,7 @@ return { -- Mason core
                 end
 
                 -- Enable Inlay Hints if supported (wrapped to catch errors)
-                if client.supports_method("textDocument/inlayHint") then
+                if client:supports_method("textDocument/inlayHint") then
                     pcall(vim.lsp.inlay_hint.enable, true, {
                         bufnr = event.buf
                     })
@@ -170,7 +170,7 @@ return { -- Mason core
                         capabilities = capabilities,
                         on_attach = function(client, bufnr)
                             -- Enable inlay hints for TypeScript
-                            if client.supports_method("textDocument/inlayHint") then
+                            if client:supports_method("textDocument/inlayHint") then
                                 vim.lsp.inlay_hint.enable(true, {
                                     bufnr = bufnr
                                 })
