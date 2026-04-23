@@ -15,21 +15,23 @@ return {
     },
   },
   {
-    {
-      {
-        "folke/snacks.nvim",
-        opts = {
-          picker = {
-            sources = {
-              explorer = {
-                hidden = true,
-                ignored = true,
-              },
-              files = {
-                hidden = true, -- show dotfiles in fuzzy finder
-                ignored = true, -- optional: show gitignored files
-              },
-            },
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+        exclude = { ".git", "node_modules" },
+        hidden = true,
+        ignored = true,
+        sources = {
+          explorer = {
+            hidden = true,
+            ignored = true,
+          },
+          files = {
+            hidden = true,
+            ignored = true,
+          },
+          grep = {
+            args = { "--glob", "!**/.git/*" },
           },
         },
       },
