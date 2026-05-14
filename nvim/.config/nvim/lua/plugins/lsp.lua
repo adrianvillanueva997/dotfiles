@@ -4,7 +4,7 @@ return {
     ensure_installed = {
       "biome",
       "lua-language-server",
-      "ty",
+      "pyrefly",
       "ruff",
       "gopls",
       "typescript-language-server",
