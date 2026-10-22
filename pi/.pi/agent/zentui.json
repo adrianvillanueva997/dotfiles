@@ -1,0 +1,79 @@
+{
+  "components": {
+    "editor": {
+      "enabled": true,
+      "style": "accent-rail",
+      "colorSource": "theme"
+    },
+    "footer": {
+      "style": "starship",
+      "colorSource": "theme",
+      "styles": {
+        "starship": {
+          "format": "\uee15  $model($sep$provider)($sep$thinkingLevel)$sep$cwd( on $git_branch)( $git_status)( $git_metrics)$fill$context($sep$tokens)($sep$cost)($sep$session_duration)",
+          "compactFormat": "$model$wrap_sep($provider)$fill$context$wrap_sep$tokens$wrap_sep($cost)",
+          "segments": {
+            "cwd": true,
+            "gitBranch": true,
+            "gitStatus": true,
+            "gitCounts": true,
+            "gitMetrics": true,
+            "runtime": true,
+            "modelInfo": true,
+            "context": true,
+            "tokens": true,
+            "cost": true,
+            "sessionDuration": true
+          },
+          "gitMetrics": {
+            "onlyNonzero": true
+          }
+        }
+      }
+    },
+    "userMessages": {
+      "enabled": true,
+      "style": "compact",
+      "colorSource": "theme"
+    },
+    "workingLine": {
+      "enabled": true,
+      "spinner": "pulse",
+      "spinnerIntervalMs": 160,
+      "animateSpinnerColor": true,
+      "textAnimation": "disabled",
+      "colorSource": "theme",
+      "placement": "border",
+      "messages": {
+        "custom": true,
+        "values": [
+          "writing slop",
+          "slopfying the codebase",
+          "summoning another abstraction",
+          "feeding the void context",
+          "doomscrolling the stack trace",
+          "forging questionable code",
+          "chasing ghosts in production",
+          "turning technical debt into sludge",
+          "doom-driven development",
+          "slop-driven development"
+        ]
+      },
+      "segments": {
+        "tool": true,
+        "elapsed": true,
+        "thought": true,
+        "tokens": true,
+        "tokenRate": true
+      }
+    },
+    "selectorBorders": {
+      "enabled": true,
+      "style": "zentui",
+      "colorSource": "theme"
+    }
+  },
+  "icons": {
+    "mode": "nerd"
+  }
+}

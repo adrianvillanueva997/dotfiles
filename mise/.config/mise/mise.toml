@@ -1,12 +1,12 @@
 [tools]
 go = "latest"
-# neovim = "0.11.2"
 neovim = "0.12.1"
 node = "latest"
 opencode = "latest"
 opentofu = "latest"
 python = "latest"
 uv = "latest"
+pi = "latest"
 
 
 [settings]
