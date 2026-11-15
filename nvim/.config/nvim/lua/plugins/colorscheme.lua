@@ -9,7 +9,19 @@ return {
     "nvim-telescope/telescope.nvim",
     opts = {
       defaults = {
-        file_ignore_patterns = { "%.git/" },
+        file_ignore_patterns = {
+          "%.git/",
+          "node_modules/",
+          "%.next/",
+          "dist/",
+          "build/",
+          "coverage/",
+          "%.cache/",
+          "%.venv/",
+          "__pycache__/",
+          "%.terraform/",
+          "target/",
+        },
         hidden = true,
       },
     },
@@ -18,7 +30,19 @@ return {
     "folke/snacks.nvim",
     opts = {
       picker = {
-        exclude = { ".git", "node_modules" },
+        exclude = {
+          ".git",
+          "node_modules",
+          ".next",
+          "dist",
+          "build",
+          "coverage",
+          ".cache",
+          ".venv",
+          "__pycache__",
+          ".terraform",
+          "target",
+        },
         hidden = true,
         ignored = true,
         sources = {
