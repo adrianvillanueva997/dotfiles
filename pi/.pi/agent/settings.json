@@ -16,7 +16,9 @@
     "npm:pi-web-search",
     "npm:@narumitw/pi-usage",
     "npm:pi-zentui",
-    "npm:pi-subagents"
+    "npm:pi-subagents",
+    "npm:openwiki"
   ],
-  "lastChangelogVersion": "1.3.0"
+  "lastChangelogVersion": "1.4.0",
+  "deviceId": "65e323fa-dd21-42c9-922a-874f96ccb858"
 }

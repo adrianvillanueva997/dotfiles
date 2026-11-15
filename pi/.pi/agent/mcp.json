@@ -1,0 +1,23 @@
+{
+  "$schema": "https://pi.dev/schemas/mcp.schema.json",
+  "mcpServers": {
+    "opentofu": {
+      "url": "https://mcp.opentofu.org/mcp",
+      "description": "Search official OpenTofu Registry providers, modules, resources, and data sources.",
+      "exposure": "deferred"
+    },
+    "terragrunt": {
+      "url": "https://mcp.docs.terragrunt.com/mcp",
+      "description": "Search official Terragrunt documentation, CLI reference, patterns, and examples.",
+      "exposure": "deferred"
+    },
+    "github": {
+      "url": "https://api.githubcopilot.com/mcp/readonly",
+      "description": "Read GitHub repositories, issues, pull requests, and code using the current GitHub CLI token.",
+      "headers": {
+        "Authorization": "!echo Bearer $(gh auth token)"
+      },
+      "exposure": "deferred"
+    }
+  }
+}
