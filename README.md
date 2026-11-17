@@ -6,3 +6,5 @@ Generally everything is self-managed by stow. The only exception is the `paccach
 /etc/systemd/system/paccache.timer
 sudo systemctl enable paccache.timer
 ```
+
+a

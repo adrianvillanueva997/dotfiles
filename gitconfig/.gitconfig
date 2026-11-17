@@ -13,20 +13,6 @@
     syntax-theme = "Monokai Extended"
     navigate = true
     hyperlinks = true
-    width = 256
-
-    # File & commit decorations
-    commit-decoration-style = "bold yellow box"
-    file-style = "bold cyan ul"
-    hunk-header-style = "bold magenta"
-
-    # Extra visibility
-    whitespace-error-style = "underline red"
-    commit-style = "bold"
-    commit-hash-style = "cyan"
-
-    # Navigation
-    line-numbers = true
 
 [merge]
     conflictstyle = diff3
