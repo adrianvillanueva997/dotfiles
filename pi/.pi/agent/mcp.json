@@ -2,8 +2,8 @@
   "$schema": "https://pi.dev/schemas/mcp.schema.json",
   "mcpServers": {
     "playwright": {
-      "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest", "--browser", "chromium"],
+      "command": "sh",
+      "args": ["-c", "npx -y @playwright/mcp@latest install-browser chrome-for-testing >&2 && exec npx -y @playwright/mcp@latest --browser chromium"],
       "description": "Automate and inspect web pages using Playwright.",
       "exposure": "deferred"
     },
