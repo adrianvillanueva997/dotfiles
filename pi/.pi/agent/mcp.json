@@ -3,7 +3,7 @@
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest"],
+      "args": ["-y", "@playwright/mcp@latest", "--browser", "chromium"],
       "description": "Automate and inspect web pages using Playwright.",
       "exposure": "deferred"
     },
