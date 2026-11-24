@@ -5,8 +5,7 @@
   "theme": "doom-metal",
   "quietStartup": "header",
   "extensions": [
-    "extensions/doom-welcome.ts",
-    "extensions/workspace-permissions.ts"
+    "extensions/doom-welcome.ts"
   ],
   "packages": [
     "git:github.com/DietrichGebert/ponytail",
