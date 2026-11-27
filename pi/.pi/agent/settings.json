@@ -4,13 +4,10 @@
   "defaultModel": "gpt-6.1-terra",
   "theme": "doom-metal",
   "quietStartup": "header",
-  "extensions": [
-    "extensions/doom-welcome.ts"
-  ],
+  "extensions": ["extensions/doom-welcome.ts"],
   "packages": [
     "git:github.com/DietrichGebert/ponytail",
     "npm:@narumitw/pi-plan-mode",
-    "npm:@juicesharp/rpiv-todo",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:pi-web-search",
     "npm:@narumitw/pi-usage",

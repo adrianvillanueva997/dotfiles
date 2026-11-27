@@ -1,70 +1,72 @@
 {
-	"name": "@heyhuynhgiabuu/pi-diff",
-	"version": "0.9.3",
-	"description": "Shiki-powered terminal diff renderer for pi — syntax-highlighted, word-level diffs in split and unified views.",
-	"keywords": [
-		"diff",
-		"pi",
-		"pi-extension",
-		"pi-package",
-		"shiki",
-		"syntax-highlighting",
-		"terminal"
-	],
-	"homepage": "https://github.com/buddingnewinsights/pi-diff#readme",
-	"bugs": {
-		"url": "https://github.com/buddingnewinsights/pi-diff/issues"
-	},
-	"license": "MIT",
-	"publishConfig": {
-		"access": "public"
-	},
-	"author": "huynhgiabuu",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/buddingnewinsights/pi-diff.git"
-	},
-	"files": [
-		"dist/",
-		"media/",
-		"README.md",
-		"LICENSE"
-	],
-	"type": "module",
-	"scripts": {
-		"build": "npm run clean && tsc",
-		"clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
-		"typecheck": "tsc --noEmit",
-		"lint": "biome check src/",
-		"lint:fix": "biome check --fix src/",
-		"test": "vitest run src --passWithNoTests",
-		"test:watch": "vitest src --passWithNoTests"
-	},
-	"dependencies": {
-		"@shikijs/cli": "^4.0.2",
-		"diff": "^8.0.4",
-		"xxhash-wasm": "^1.1.0"
-	},
-	"peerDependencies": {
-		"@earendil-works/pi-coding-agent": "*",
-		"@earendil-works/pi-tui": "*"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.3.5",
-		"@earendil-works/pi-coding-agent": "1.1.0",
-		"@earendil-works/pi-tui": "1.1.0",
-		"@types/diff": "^7.0.2",
-		"@types/node": "^24.13.3",
-		"typescript": "^5.0.0",
-		"vitest": "^4.0.18"
-	},
-	"pi": {
-		"extensions": [
-			"./dist/index.js"
-		]
-	},
-	"main": "./dist/index.js",
-	"exports": {
-		"default": "./dist/index.js"
-	}
+  "name": "@heyhuynhgiabuu/pi-diff",
+  "version": "0.9.3",
+  "description": "Shiki-powered terminal diff renderer for pi — syntax-highlighted, word-level diffs in split and unified views.",
+  "keywords": [
+    "diff",
+    "pi",
+    "pi-extension",
+    "pi-package",
+    "shiki",
+    "syntax-highlighting",
+    "terminal"
+  ],
+  "homepage": "https://github.com/buddingnewinsights/pi-diff#readme",
+  "bugs": {
+    "url": "https://github.com/buddingnewinsights/pi-diff/issues"
+  },
+  "license": "MIT",
+  "author": "huynhgiabuu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buddingnewinsights/pi-diff.git"
+  },
+  "files": [
+    "dist/",
+    "media/",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    "default": "./dist/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "pnpm run clean && tsc && esbuild src/index.ts --bundle --platform=node --format=esm --external:@earendil-works/* --outfile=dist/index.js",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check src/",
+    "lint:fix": "biome check --fix src/",
+    "test": "vitest run src --passWithNoTests",
+    "test:pi-smoke": "pnpm build && node test/pi-smoke.mjs",
+    "test:watch": "vitest src --passWithNoTests"
+  },
+  "dependencies": {
+    "@shikijs/cli": "^4.0.2",
+    "diff": "^8.0.4",
+    "xxhash-wasm": "^1.1.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.5",
+    "@earendil-works/pi-coding-agent": "1.5.2",
+    "@earendil-works/pi-tui": "1.5.2",
+    "@types/diff": "^7.0.2",
+    "@types/node": "^24.13.3",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.0.0",
+    "vitest": "^4.0.18"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "pi": {
+    "extensions": [
+      "./dist/index.js"
+    ]
+  }
 }
