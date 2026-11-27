@@ -21,8 +21,8 @@
   "lastChangelogVersion": "1.5.2",
   "deviceId": "65e323fa-dd21-42c9-922a-874f96ccb858",
   "extensionChangelogVersions": {
-    "{\"source\":\"npm:@narumitw/pi-plan-mode\",\"scope\":\"user\"}": "0.60.2",
-    "{\"source\":\"npm:@narumitw/pi-usage\",\"scope\":\"user\"}": "0.69.3",
-    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.89.0"
+    "{\"source\":\"npm:@narumitw/pi-plan-mode\",\"scope\":\"user\"}": "0.62.0",
+    "{\"source\":\"npm:@narumitw/pi-usage\",\"scope\":\"user\"}": "0.70.0",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.90.0"
   }
 }
