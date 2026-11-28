@@ -15,11 +15,11 @@
     "npm:pi-subagents",
     "npm:openwiki"
   ],
-  "lastChangelogVersion": "1.5.2",
+  "lastChangelogVersion": "1.6.1",
   "deviceId": "65e323fa-dd21-42c9-922a-874f96ccb858",
   "extensionChangelogVersions": {
-    "{\"source\":\"npm:@narumitw/pi-plan-mode\",\"scope\":\"user\"}": "0.62.0",
-    "{\"source\":\"npm:@narumitw/pi-usage\",\"scope\":\"user\"}": "0.70.0",
+    "{\"source\":\"npm:@narumitw/pi-plan-mode\",\"scope\":\"user\"}": "0.63.0",
+    "{\"source\":\"npm:@narumitw/pi-usage\",\"scope\":\"user\"}": "0.70.1",
     "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.90.0"
   }
 }
